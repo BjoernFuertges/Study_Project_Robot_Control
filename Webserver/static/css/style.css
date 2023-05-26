@@ -102,6 +102,12 @@ h1{
   transition: all .05s linear;
 }
 
+.arr:hover{
+  background: rgb(67, 63, 63);
+}
+
+.arr:
+
 .up {
   position: relative;
   top: -4px;
