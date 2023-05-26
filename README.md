@@ -1,11 +1,16 @@
 # Studienprojekt1_Robotersteuerung
 
-# To start the Gui navigate to /webserver
-# then type:
-
-    python -m flask --app GUI run
-
-# to serve it in your browser
+## Dependencies
+* Flask:
+    ```bash
+    pip install flask
+    ```
+## Start
+To start the Gui navigate to `/webserver` then type:
+```bash
+python -m flask --app GUI run
+```
+to serve it in your browser
 
 # TODO Website:
 
@@ -22,4 +27,4 @@
 
 # TODO Machine Learning/ Image Recognition:
 
-1.) start
+1.) start.
