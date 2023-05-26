@@ -3,33 +3,45 @@
 {% block content %}
 
 <div class="textkeys">
-    <h2>Arrow Keys to control the robtot</h2>
-    <li>
-      <item> Front - accelerate</item> <br />
-      <item> Back  - brake</item><br />
-      <item> Left  - turn wheels left</item><br />
-      <item> Right - turn wheels right</item><br />
-    </li>
-</div>   
-<div class="keys">
-    <div class="up arr"><i class="fa fa-arrow-up"></i></div>
-    <br />
-    <div class="left arr"><i class="fa fa-arrow-left"></i></div>  
-    <div class="down arr"><i class="fa fa-arrow-down"></i></div>
-    <div class="right arr"><i class="fa fa-arrow-right"></i></div>
+  <h2>Arrow Keys to control the robtot</h2>
+  <li>
+    <item> Front - accelerate</item> <br />
+    <item> Back - brake</item><br />
+    <item> Left - turn wheels left</item><br />
+    <item> Right - turn wheels right</item><br />
+  </li>
+</div>
+<div class="keys" style="display: flex; flex-direction: column;">
+  <form action="/forward/" method="post" target = "dummyframe">
+    <button class="up arr" type="submit"><i class="fa fa-arrow-up"></i></button>
+  </form>
+  <div style="display:flex; flex-direction: row; justify-content: center;">
+    <form action="/leftturn/" method="post" target = "dummyframe">
+      <button class="left arr"><i class="fa fa-arrow-left"></i></button>
+    </form>
+    <form action="/backward/" method="post" target = "dummyframe">
+      <button class="down arr"><i class="fa fa-arrow-down"></i></button>
+    </form>
+    <form action="/rightturn/" method="post" target = "dummyframe">
+      <button class="right arr"><i class="fa fa-arrow-right"></i></button>
+    </form>
   </div>
-  <br />
-  <br />
-  <br />
-  <br />
-  <div class="names">
-    <div class="uptext"></div>
-    <div class="downtext"></div>
-    <div class="lefttext"></div>
-    <div class="righttext"></div>
-    <div class="b"></div>  
-    <div class="a"></div>
-  </div>
-  
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+</div>
+<br />
+<br />
+<br />
+<br />
+<div class="names">
+  <div class="uptext"></div>
+  <div class="downtext"></div>
+  <div class="lefttext"></div>
+  <div class="righttext"></div>
+  <div class="b"></div>
+  <div class="a"></div>
+</div>
+
+<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 {% endblock %}
