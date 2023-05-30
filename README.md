@@ -1,9 +1,16 @@
 # Studienprojekt1_Robotersteuerung
 
 ## Dependencies
+### Webserver
 * Flask:
     ```bash
     pip install flask
+    ```
+
+### webcontroller
+* grpc
+    ```bash
+    pip install grpcio-tools
     ```
 ## Start
 To start the Gui navigate to `/webserver` then type:
