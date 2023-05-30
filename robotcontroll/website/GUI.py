@@ -8,6 +8,8 @@ from protos_generated import webcontroller_pb2_grpc
 
 app = Flask("Robot Controls")
 
+robot_name = "IRobot"
+
 @app.route("/")
 def index():
         return render_template('index.html')
@@ -20,7 +22,9 @@ def controls():
 def move_forward():
     #Moving forward code
     forward_message = "Moving Forward..."
-        #Björn Funktionen
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = webcontroller_pb2_grpc.AgentStub(channel)
+        response = stub.MoveInformation(webcontroller_pb2.MoveInformationDeliveryChangeForward(name=robot_name))
     return render_template('index.html', forward_message=forward_message);
 
 @app.route("/backward/", methods=['POST'])
@@ -46,6 +50,9 @@ def turn_right():
 
     return render_template('index.html', forward_message=right_message);
 
+def start() -> None:
+    app.run(debug=True)
+     
 
 if __name__ == "__main__":
     app.run(debug=True)

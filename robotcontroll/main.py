@@ -1,6 +1,6 @@
 from threading import Thread
 import webcontroller.webcontroller as wcs
-import website.webcontroller_client as wcc
+import website.GUI as wcc
 
 t_wcs = Thread(target = wcs.start, daemon = True)
 t_wcc = Thread(target = wcc.start)
