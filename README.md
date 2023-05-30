@@ -19,6 +19,13 @@ python -m flask --app GUI run
 ```
 to serve it in your browser
 
+## Rebuild
+### proto
+From `/webcontroller`
+````bash
+python -m grpc_tools.protoc -I../protos --python_out=. --pyi_out=. --grpc_python_out=. ../protos/webcontroller.proto
+```
+
 # TODO Website:
 0. Complete interface for Robot Controls
     0.1 Make a connection to the Camera and show the camera output on the webserver
