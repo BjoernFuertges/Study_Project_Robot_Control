@@ -3,8 +3,8 @@ from __future__ import print_function
 import logging
 
 import grpc
-import webcontroller_pb2
-import webcontroller_pb2_grpc
+from ..protos_generated import webcontroller_pb2
+from ..protos_generated import webcontroller_pb2_grpc
 
 
 def run():

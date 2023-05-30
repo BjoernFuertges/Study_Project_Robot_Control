@@ -4,9 +4,8 @@ from concurrent import futures
 import logging
 
 import grpc
-import webcontroller_pb2
-import webcontroller_pb2_grpc
-
+from protos_generated import webcontroller_pb2
+from protos_generated import webcontroller_pb2_grpc
 
 class Greeter(webcontroller_pb2_grpc.GreeterServicer):
 
@@ -23,6 +22,9 @@ def serve():
     print("Server started, listening on " + port)
     server.wait_for_termination()
 
+def start():
+    logging.basicConfig()
+    serve()
 
 if __name__ == '__main__':
     logging.basicConfig()
