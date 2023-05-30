@@ -13,14 +13,14 @@
     pip install grpcio-tools
     ```
 ## Start
-To start the Gui navigate to `/website` then type:
+To start the Gui navigate to `/robotcontrol` then type:
 ```bash
-cd robotcontrol
 python gui_handler.py
 ```
 (real setup)
 or
 ```bash
+cd website
 python -m flask --app GUI run
 ```
 (dry run)
@@ -41,7 +41,7 @@ python gui_handler.py
 
 ## Rebuild
 ### proto
-From `/robotcontroll`
+From `/robotcontrol`
 ```bash
 python -m grpc_tools.protoc -I./protos --python_out=./protos_generated --pyi_out=./protos_generated --grpc_python_out=./protos_generated ./protos/webcontroller.proto
 ```
