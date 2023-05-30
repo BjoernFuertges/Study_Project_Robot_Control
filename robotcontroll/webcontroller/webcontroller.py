@@ -7,10 +7,10 @@ import grpc
 from protos_generated import webcontroller_pb2
 from protos_generated import webcontroller_pb2_grpc
 
-import status_management
+from webcontroller import status_management
 
 class Agent(webcontroller_pb2_grpc.AgentServicer):
-    sm = status_management.status_manager()
+    sm = status_management.status_manager("IRobot")
 
     def MoveInformation(self, request, context):
         return self.Sm_To_mir()
