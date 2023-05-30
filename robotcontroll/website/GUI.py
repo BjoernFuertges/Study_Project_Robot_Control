@@ -25,7 +25,7 @@ def move_forward():
     forward_message = "Moving Forward..."
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
-        response = stub.MoveInformationDeliveryChangeRight(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        response = stub.MoveInformationDeliveryChangeForward(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         print(
             response.name + ", " + 
             str(response.stop) + ", " + 
@@ -39,23 +39,48 @@ def move_forward():
 def move_backward():
     #Moving forward code
     backward_message = "Moving Back..."
-    #Björn Funktionen
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = webcontroller_pb2_grpc.AgentStub(channel)
+        response = stub.MoveInformationDeliveryChangeBackward(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        print(
+            response.name + ", " + 
+            str(response.stop) + ", " + 
+            str(response.speed) + ", " + 
+            response.direction + ", " + 
+            response.turn + ", " + 
+            str(response.radius))
     return render_template('index.html', forward_message=backward_message)
 
 @app.route("/leftturn/", methods=['POST'])
 def turn_left():
     #Turn left code
     left_message = "Turning Left..."
-        #Björn Funktionen
-
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = webcontroller_pb2_grpc.AgentStub(channel)
+        response = stub.MoveInformationDeliveryChangeLeft(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        print(
+            response.name + ", " + 
+            str(response.stop) + ", " + 
+            str(response.speed) + ", " + 
+            response.direction + ", " + 
+            response.turn + ", " + 
+            str(response.radius))
     return render_template('index.html', forward_message=left_message)
 
 @app.route("/rightturn/", methods=['POST'])
 def turn_right():
     #Moving forward code
     right_message = "Turning Right..."
-        #Björn Funktionen
-
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = webcontroller_pb2_grpc.AgentStub(channel)
+        response = stub.MoveInformationDeliveryChangeRight(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        print(
+            response.name + ", " + 
+            str(response.stop) + ", " + 
+            str(response.speed) + ", " + 
+            response.direction + ", " + 
+            response.turn + ", " + 
+            str(response.radius))
     return render_template('index.html', forward_message=right_message)
 
 def start() -> None:
