@@ -16,7 +16,8 @@ service Agent {
   rpc MoveInformationDeliveryChangeBackward (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryStop (MoveInformationSendStop) returns (MoveInformationReply) {}
   rpc MoveInformationGetLastSended (MoveInformationRequest) returns (MoveInformationReplyWithStatus) {}
-
+  rpc MoveInformationGetNew (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationHasNew (MoveInformationRequest) returns (MoveInformationHasNewReply) {}
 }
 
 // The request message containing the user's name.
@@ -42,6 +43,10 @@ message MoveInformationReplyWithStatus {
   string turn = 5;
   double radius = 6;
   bool passedToRobot = 7;
+}
+
+message MoveInformationHasNewReply {
+  bool hasNew = 1;
 }
 
 message MoveInformationSendLeft {

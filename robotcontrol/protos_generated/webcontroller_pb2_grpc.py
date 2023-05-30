@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import protos_generated.webcontroller_pb2 as webcontroller__pb2
+import webcontroller_pb2 as webcontroller__pb2
 
 
 class AgentStub(object):
@@ -79,6 +79,16 @@ class AgentStub(object):
                 '/Agent/MoveInformationGetLastSended',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
                 response_deserializer=webcontroller__pb2.MoveInformationReplyWithStatus.FromString,
+                )
+        self.MoveInformationGetNew = channel.unary_unary(
+                '/Agent/MoveInformationGetNew',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
+                )
+        self.MoveInformationHasNew = channel.unary_unary(
+                '/Agent/MoveInformationHasNew',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationHasNewReply.FromString,
                 )
 
 
@@ -165,6 +175,18 @@ class AgentServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def MoveInformationGetNew(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveInformationHasNew(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_AgentServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -232,6 +254,16 @@ def add_AgentServicer_to_server(servicer, server):
                     servicer.MoveInformationGetLastSended,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
                     response_serializer=webcontroller__pb2.MoveInformationReplyWithStatus.SerializeToString,
+            ),
+            'MoveInformationGetNew': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationGetNew,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
+            ),
+            'MoveInformationHasNew': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationHasNew,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationHasNewReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -462,5 +494,39 @@ class Agent(object):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationGetLastSended',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
             webcontroller__pb2.MoveInformationReplyWithStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationGetNew(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationGetNew',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
+            webcontroller__pb2.MoveInformationReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationHasNew(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationHasNew',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
+            webcontroller__pb2.MoveInformationHasNewReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
