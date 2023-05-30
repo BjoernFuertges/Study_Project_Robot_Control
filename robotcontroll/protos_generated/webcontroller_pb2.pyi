@@ -36,6 +36,16 @@ class MoveInformationSendBackward(_message.Message):
     speed: int
     def __init__(self, name: _Optional[str] = ..., speed: _Optional[int] = ..., radius: _Optional[float] = ...) -> None: ...
 
+class MoveInformationSendCenter(_message.Message):
+    __slots__ = ["name", "radius", "speed"]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    RADIUS_FIELD_NUMBER: _ClassVar[int]
+    SPEED_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    radius: float
+    speed: int
+    def __init__(self, name: _Optional[str] = ..., speed: _Optional[int] = ..., radius: _Optional[float] = ...) -> None: ...
+
 class MoveInformationSendForward(_message.Message):
     __slots__ = ["name", "radius", "speed"]
     NAME_FIELD_NUMBER: _ClassVar[int]

@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import protos_generated.webcontroller_pb2 as webcontroller__pb2
+import webcontroller_pb2 as webcontroller__pb2
 
 
 class AgentStub(object):
@@ -28,6 +28,11 @@ class AgentStub(object):
         self.MoveInformationDeliveryRight = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryRight',
                 request_serializer=webcontroller__pb2.MoveInformationSendRight.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                )
+        self.MoveInformationDeliveryCenter = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryCenter',
+                request_serializer=webcontroller__pb2.MoveInformationSendCenter.SerializeToString,
                 response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
                 )
         self.MoveInformationDeliveryForward = channel.unary_unary(
@@ -70,6 +75,12 @@ class AgentServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def MoveInformationDeliveryCenter(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def MoveInformationDeliveryForward(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -104,6 +115,11 @@ def add_AgentServicer_to_server(servicer, server):
             'MoveInformationDeliveryRight': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryRight,
                     request_deserializer=webcontroller__pb2.MoveInformationSendRight.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+            ),
+            'MoveInformationDeliveryCenter': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryCenter,
+                    request_deserializer=webcontroller__pb2.MoveInformationSendCenter.FromString,
                     response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
             ),
             'MoveInformationDeliveryForward': grpc.unary_unary_rpc_method_handler(
@@ -179,6 +195,23 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryRight',
             webcontroller__pb2.MoveInformationSendRight.SerializeToString,
+            webcontroller__pb2.MoveInformationSendReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationDeliveryCenter(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryCenter',
+            webcontroller__pb2.MoveInformationSendCenter.SerializeToString,
             webcontroller__pb2.MoveInformationSendReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

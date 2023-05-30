@@ -7,12 +7,29 @@ import grpc
 from protos_generated import webcontroller_pb2
 from protos_generated import webcontroller_pb2_grpc
 
+import status_management
+
 class Agent(webcontroller_pb2_grpc.AgentServicer):
+    sm = status_management.status_manager()
 
     def MoveInformation(self, request, context):
         return webcontroller_pb2.MoveInformationReply(name='Hello, %s!' % request.name, stop=False, speed=100, direction="forward", turn="no", radius=0.8)
-
-
+    
+    def MoveInformationDeliveryLeft (self, request, context):
+        return webcontroller_pb2.MoveInformationReply(name='Hello, %s!' % request.name, stop=False, speed=100, direction="forward", turn="no", radius=0.8)
+    
+    def MoveInformationDeliveryRight (self, request, context):
+        return webcontroller_pb2.MoveInformationReply(name='Hello, %s!' % request.name, stop=False, speed=100, direction="forward", turn="no", radius=0.8)
+    
+    def MoveInformationDeliveryForward (self, request, context):
+        return webcontroller_pb2.MoveInformationReply(name='Hello, %s!' % request.name, stop=False, speed=100, direction="forward", turn="no", radius=0.8)
+    
+    def MoveInformationDeliveryBackward (self, request, context):
+        return webcontroller_pb2.MoveInformationReply(name='Hello, %s!' % request.name, stop=False, speed=100, direction="forward", turn="no", radius=0.8)
+    
+    def MoveInformationDeliveryStop (self, request, context):
+        return webcontroller_pb2.MoveInformationReply(name='Hello, %s!' % request.name, stop=False, speed=100, direction="forward", turn="no", radius=0.8)
+    
 def serve():
     port = '50051'
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
