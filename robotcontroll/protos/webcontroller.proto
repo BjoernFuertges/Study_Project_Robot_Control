@@ -3,7 +3,7 @@ syntax = "proto3";
 // The greeting service definition.
 service Greeter {
   // Sends a greeting
-  rpc Move (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformation (MoveInformationRequest) returns (MoveInformationReply) {}
 }
 
 // The request message containing the user's name.

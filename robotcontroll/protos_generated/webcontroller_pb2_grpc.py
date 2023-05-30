@@ -15,8 +15,8 @@ class GreeterStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.Move = channel.unary_unary(
-                '/Greeter/Move',
+        self.MoveInformation = channel.unary_unary(
+                '/Greeter/MoveInformation',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
                 response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
@@ -26,7 +26,7 @@ class GreeterServicer(object):
     """The greeting service definition.
     """
 
-    def Move(self, request, context):
+    def MoveInformation(self, request, context):
         """Sends a greeting
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -36,8 +36,8 @@ class GreeterServicer(object):
 
 def add_GreeterServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Move': grpc.unary_unary_rpc_method_handler(
-                    servicer.Move,
+            'MoveInformation': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformation,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
                     response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
@@ -53,7 +53,7 @@ class Greeter(object):
     """
 
     @staticmethod
-    def Move(request,
+    def MoveInformation(request,
             target,
             options=(),
             channel_credentials=None,
@@ -63,7 +63,7 @@ class Greeter(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Greeter/Move',
+        return grpc.experimental.unary_unary(request, target, '/Greeter/MoveInformation',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
             webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,

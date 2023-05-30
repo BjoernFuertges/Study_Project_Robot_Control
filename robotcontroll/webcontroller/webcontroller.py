@@ -9,7 +9,7 @@ from protos_generated import webcontroller_pb2_grpc
 
 class Greeter(webcontroller_pb2_grpc.GreeterServicer):
 
-    def Move(self, request, context):
+    def MoveInformation(self, request, context):
         return webcontroller_pb2.MoveInformationReply(message='Hello, %s!' % request.name)
 
 
