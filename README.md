@@ -32,10 +32,11 @@ python .\webcontroller\webcontroller_client.py
 
 ## Rebuild
 ### proto
-From `/webcontroller`
+From `/robotcontroll`
 ```bash
-python -m grpc_tools.protoc -I../protos --python_out=. --pyi_out=. --grpc_python_out=. ../protos/webcontroller.proto
+python -m grpc_tools.protoc -I./protos --python_out=./protos_generated --pyi_out=./protos_generated --grpc_python_out=./protos_generated ./protos/webcontroller.proto
 ```
+**Insert per hand `protos_generated.` in webcontroller_pb2_grpc.py in the import line (`import webcontroller_pb2 as webcontroller__pb2`)!** If you don't do it, the programm will not run because of an `ModuleNotFoundError`.
 
 ## TODO
 ### TODO Website:
