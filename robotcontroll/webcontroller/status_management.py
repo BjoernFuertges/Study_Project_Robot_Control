@@ -5,6 +5,7 @@ class status_manager:
     direction : str
     turn : str
     radius : float
+    passed_to_robot : bool
 
     def __init__(self, name) -> None:
         self.name = name
@@ -13,3 +14,4 @@ class status_manager:
         self.direction = 'forward'
         self.turn = 'no'
         self.radius = 0.8
+        self.passed_to_robot = False

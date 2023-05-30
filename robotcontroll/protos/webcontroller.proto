@@ -10,6 +10,7 @@ service Agent {
   rpc MoveInformationDeliveryForward (MoveInformationSendForward) returns (MoveInformationSendReply) {}
   rpc MoveInformationDeliveryBackward (MoveInformationSendBackward) returns (MoveInformationSendReply) {}
   rpc MoveInformationDeliveryStop (MoveInformationSendStop) returns (MoveInformationSendReply) {}
+  rpc MoveInformationGetLastSended (MoveInformationRequest) returns (MoveInformationSendReply) {}
 
 }
 

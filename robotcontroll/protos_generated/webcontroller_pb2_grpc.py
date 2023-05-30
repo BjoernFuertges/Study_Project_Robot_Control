@@ -50,6 +50,11 @@ class AgentStub(object):
                 request_serializer=webcontroller__pb2.MoveInformationSendStop.SerializeToString,
                 response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
                 )
+        self.MoveInformationGetLastSended = channel.unary_unary(
+                '/Agent/MoveInformationGetLastSended',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                )
 
 
 class AgentServicer(object):
@@ -99,6 +104,12 @@ class AgentServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def MoveInformationGetLastSended(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_AgentServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -135,6 +146,11 @@ def add_AgentServicer_to_server(servicer, server):
             'MoveInformationDeliveryStop': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryStop,
                     request_deserializer=webcontroller__pb2.MoveInformationSendStop.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+            ),
+            'MoveInformationGetLastSended': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationGetLastSended,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
                     response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
             ),
     }
@@ -263,6 +279,23 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryStop',
             webcontroller__pb2.MoveInformationSendStop.SerializeToString,
+            webcontroller__pb2.MoveInformationSendReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationGetLastSended(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationGetLastSended',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
             webcontroller__pb2.MoveInformationSendReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
