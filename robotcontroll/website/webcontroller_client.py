@@ -13,9 +13,9 @@ def run():
     # of the code.
     print("Will try to greet world ...")
     with grpc.insecure_channel('localhost:50051') as channel:
-        stub = webcontroller_pb2_grpc.GreeterStub(channel)
+        stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformation(webcontroller_pb2.MoveInformationRequest(name='you'))
-    print("Greeter client received: " + response.message)
+    print("Agent client received: " + response.message)
 
 def start():
     logging.basicConfig()

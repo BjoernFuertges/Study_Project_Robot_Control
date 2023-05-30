@@ -5,7 +5,7 @@ import grpc
 import protos_generated.webcontroller_pb2 as webcontroller__pb2
 
 
-class GreeterStub(object):
+class AgentStub(object):
     """The greeting service definition.
     """
 
@@ -16,13 +16,13 @@ class GreeterStub(object):
             channel: A grpc.Channel.
         """
         self.MoveInformation = channel.unary_unary(
-                '/Greeter/MoveInformation',
+                '/Agent/MoveInformation',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
                 response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
 
 
-class GreeterServicer(object):
+class AgentServicer(object):
     """The greeting service definition.
     """
 
@@ -34,7 +34,7 @@ class GreeterServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_GreeterServicer_to_server(servicer, server):
+def add_AgentServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'MoveInformation': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformation,
@@ -43,12 +43,12 @@ def add_GreeterServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'Greeter', rpc_method_handlers)
+            'Agent', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class Greeter(object):
+class Agent(object):
     """The greeting service definition.
     """
 
@@ -63,7 +63,7 @@ class Greeter(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Greeter/MoveInformation',
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformation',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
             webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
