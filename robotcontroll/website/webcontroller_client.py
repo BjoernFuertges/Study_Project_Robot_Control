@@ -3,8 +3,8 @@ from __future__ import print_function
 import logging
 
 import grpc
-from ..protos_generated import webcontroller_pb2
-from ..protos_generated import webcontroller_pb2_grpc
+from protos_generated import webcontroller_pb2
+from protos_generated import webcontroller_pb2_grpc
 
 
 def run():
@@ -16,6 +16,10 @@ def run():
         stub = webcontroller_pb2_grpc.GreeterStub(channel)
         response = stub.SayHello(webcontroller_pb2.HelloRequest(name='you'))
     print("Greeter client received: " + response.message)
+
+def start():
+    logging.basicConfig()
+    run()
 
 
 if __name__ == '__main__':
