@@ -1,23 +1,23 @@
-"""The Python implementation of the GRPC helloworld.Greeter server."""
+"""The Python implementation of the GRPC webcontroller.Greeter server."""
 
 from concurrent import futures
 import logging
 
 import grpc
-import helloworld_pb2
-import helloworld_pb2_grpc
+import webcontroller_pb2
+import webcontroller_pb2_grpc
 
 
-class Greeter(helloworld_pb2_grpc.GreeterServicer):
+class Greeter(webcontroller_pb2_grpc.GreeterServicer):
 
     def SayHello(self, request, context):
-        return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
+        return webcontroller_pb2.HelloReply(message='Hello, %s!' % request.name)
 
 
 def serve():
     port = '50051'
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
+    webcontroller_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
     server.add_insecure_port('[::]:' + port)
     server.start()
     print("Server started, listening on " + port)
