@@ -6,13 +6,14 @@ import grpc
 from protos_generated import webcontroller_pb2
 from protos_generated import webcontroller_pb2_grpc
 
-app = Flask("Robot Controls")
+app = Flask(__name__, template_folder='templates')
 
 robot_name = "IRobot"
 
+
 @app.route("/")
 def index():
-        return render_template('index.html')
+    return render_template('index.html')
 
 @app.route("/controls")
 def controls():
@@ -24,7 +25,7 @@ def move_forward():
     forward_message = "Moving Forward..."
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
-        response = stub.MoveInformation(webcontroller_pb2.MoveInformationDeliveryChangeForward(name=robot_name))
+        response = stub.MoveInformationDeliveryChangeRight(webcontroller_pb2.MoveInformationRequest(name=robot_name))
     return render_template('index.html', forward_message=forward_message);
 
 @app.route("/backward/", methods=['POST'])
@@ -32,7 +33,7 @@ def move_backward():
     #Moving forward code
     backward_message = "Moving Back..."
     #Björn Funktionen
-    return render_template('index.html', forward_message=backward_message);
+    return render_template('index.html', forward_message=backward_message)
 
 @app.route("/leftturn/", methods=['POST'])
 def turn_left():
@@ -40,7 +41,7 @@ def turn_left():
     left_message = "Turning Left..."
         #Björn Funktionen
 
-    return render_template('index.html', forward_message=left_message);
+    return render_template('index.html', forward_message=left_message)
 
 @app.route("/rightturn/", methods=['POST'])
 def turn_right():
@@ -48,7 +49,7 @@ def turn_right():
     right_message = "Turning Right..."
         #Björn Funktionen
 
-    return render_template('index.html', forward_message=right_message);
+    return render_template('index.html', forward_message=right_message)
 
 def start() -> None:
     app.run(debug=True)

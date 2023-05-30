@@ -64,23 +64,23 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
     
     def Sm_To_mir(self) -> webcontroller_pb2.MoveInformationReply:
         return webcontroller_pb2.MoveInformationReply(
-            self.sm.name, 
-            self.sm.stop,
-            self.sm.speed,
-            self.sm.direction,
-            self.sm.turn,
-            self.sm.radius
+            name = self.sm.name, 
+            stop = self.sm.stop,
+            speed = self.sm.speed,
+            direction = self.sm.direction,
+            turn = self.sm.turn,
+            radius = self.sm.radius
         )
     
     def Sm_To_mirws(self) -> webcontroller_pb2.MoveInformationReplyWithStatus:
         return webcontroller_pb2.MoveInformationReplyWithStatus(
-            self.sm.name, 
-            self.sm.stop,
-            self.sm.speed,
-            self.sm.direction,
-            self.sm.turn,
-            self.sm.radius,
-            self.sm.passed_to_robot
+            name = self.sm.name, 
+            stop = self.sm.stop,
+            speed = self.sm.speed,
+            direction = self.sm.direction,
+            turn = self.sm.turn,
+            radius = self.sm.radius,
+            passedToRobot = self.sm.passed_to_robot
         )
 
 def serve():
