@@ -13,21 +13,30 @@
     pip install grpcio-tools
     ```
 ## Start
-To start the Gui navigate to `/webserver` then type:
+To start the Gui navigate to `/website` then type:
+```bash
+cd robotcontrol
+python gui_handler.py
+```
+(real setup)
+or
 ```bash
 python -m flask --app GUI run
 ```
+(dry run)
 to serve it in your browser
 
 ### GRPC start
 Start the server:
 ```bash
-python .\webcontroller\webcontroller.py
+cd robotcontrol
+python server_handler.py
 ```
 
 Start the client:
 ```bash
-python .\webcontroller\webcontroller_client.py
+cd robotcontrol
+python gui_handler.py
 ```
 
 ## Rebuild
