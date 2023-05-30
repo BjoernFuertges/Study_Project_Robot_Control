@@ -84,24 +84,6 @@ class MoveInformationSendLeft(_message.Message):
     speed: int
     def __init__(self, name: _Optional[str] = ..., speed: _Optional[int] = ..., radius: _Optional[float] = ...) -> None: ...
 
-class MoveInformationSendReply(_message.Message):
-    __slots__ = ["direction", "name", "radius", "speed", "stop", "success", "turn"]
-    DIRECTION_FIELD_NUMBER: _ClassVar[int]
-    NAME_FIELD_NUMBER: _ClassVar[int]
-    RADIUS_FIELD_NUMBER: _ClassVar[int]
-    SPEED_FIELD_NUMBER: _ClassVar[int]
-    STOP_FIELD_NUMBER: _ClassVar[int]
-    SUCCESS_FIELD_NUMBER: _ClassVar[int]
-    TURN_FIELD_NUMBER: _ClassVar[int]
-    direction: str
-    name: str
-    radius: float
-    speed: int
-    stop: bool
-    success: bool
-    turn: str
-    def __init__(self, name: _Optional[str] = ..., stop: bool = ..., speed: _Optional[int] = ..., direction: _Optional[str] = ..., turn: _Optional[str] = ..., radius: _Optional[float] = ..., success: bool = ...) -> None: ...
-
 class MoveInformationSendRight(_message.Message):
     __slots__ = ["name", "radius", "speed"]
     NAME_FIELD_NUMBER: _ClassVar[int]

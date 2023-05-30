@@ -4,17 +4,17 @@ syntax = "proto3";
 service Agent {
   // Sends a greeting
   rpc MoveInformation (MoveInformationRequest) returns (MoveInformationReply) {}
-  rpc MoveInformationDeliveryLeft (MoveInformationSendLeft) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryRight (MoveInformationSendRight) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryCenter (MoveInformationSendCenter) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryForward (MoveInformationSendForward) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryBackward (MoveInformationSendBackward) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryChangeLeft (MoveInformationRequest) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryChangeRight (MoveInformationRequest) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryChangeCenter (MoveInformationRequest) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryChangeForward (MoveInformationRequest) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryChangeBackward (MoveInformationRequest) returns (MoveInformationSendReply) {}
-  rpc MoveInformationDeliveryStop (MoveInformationSendStop) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryLeft (MoveInformationSendLeft) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryRight (MoveInformationSendRight) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryCenter (MoveInformationSendCenter) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryForward (MoveInformationSendForward) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryBackward (MoveInformationSendBackward) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryChangeLeft (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryChangeRight (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryChangeCenter (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryChangeForward (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryChangeBackward (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryStop (MoveInformationSendStop) returns (MoveInformationReply) {}
   rpc MoveInformationGetLastSended (MoveInformationRequest) returns (MoveInformationReplyWithStatus) {}
 
 }
@@ -77,15 +77,4 @@ message MoveInformationSendBackward {
 message MoveInformationSendStop {
   string name = 1;
   bool stop = 2;
-}
-
-// The response message containing the greetings
-message MoveInformationSendReply {
-  string name = 1;
-  bool stop = 2;
-  int32 speed = 3;
-  string direction = 4;
-  string turn = 5;
-  double radius = 6;
-  bool success = 7;
 }

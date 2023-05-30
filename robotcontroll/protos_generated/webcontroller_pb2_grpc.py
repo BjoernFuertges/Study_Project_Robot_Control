@@ -23,57 +23,57 @@ class AgentStub(object):
         self.MoveInformationDeliveryLeft = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryLeft',
                 request_serializer=webcontroller__pb2.MoveInformationSendLeft.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryRight = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryRight',
                 request_serializer=webcontroller__pb2.MoveInformationSendRight.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryCenter = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryCenter',
                 request_serializer=webcontroller__pb2.MoveInformationSendCenter.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryForward = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryForward',
                 request_serializer=webcontroller__pb2.MoveInformationSendForward.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryBackward = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryBackward',
                 request_serializer=webcontroller__pb2.MoveInformationSendBackward.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryChangeLeft = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryChangeLeft',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryChangeRight = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryChangeRight',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryChangeCenter = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryChangeCenter',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryChangeForward = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryChangeForward',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryChangeBackward = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryChangeBackward',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationDeliveryStop = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryStop',
                 request_serializer=webcontroller__pb2.MoveInformationSendStop.SerializeToString,
-                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
         self.MoveInformationGetLastSended = channel.unary_unary(
                 '/Agent/MoveInformationGetLastSended',
@@ -176,57 +176,57 @@ def add_AgentServicer_to_server(servicer, server):
             'MoveInformationDeliveryLeft': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryLeft,
                     request_deserializer=webcontroller__pb2.MoveInformationSendLeft.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryRight': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryRight,
                     request_deserializer=webcontroller__pb2.MoveInformationSendRight.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryCenter': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryCenter,
                     request_deserializer=webcontroller__pb2.MoveInformationSendCenter.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryForward': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryForward,
                     request_deserializer=webcontroller__pb2.MoveInformationSendForward.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryBackward': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryBackward,
                     request_deserializer=webcontroller__pb2.MoveInformationSendBackward.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryChangeLeft': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryChangeLeft,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryChangeRight': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryChangeRight,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryChangeCenter': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryChangeCenter,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryChangeForward': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryChangeForward,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryChangeBackward': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryChangeBackward,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationDeliveryStop': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryStop,
                     request_deserializer=webcontroller__pb2.MoveInformationSendStop.FromString,
-                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
             'MoveInformationGetLastSended': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationGetLastSended,
@@ -274,7 +274,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryLeft',
             webcontroller__pb2.MoveInformationSendLeft.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -291,7 +291,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryRight',
             webcontroller__pb2.MoveInformationSendRight.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -308,7 +308,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryCenter',
             webcontroller__pb2.MoveInformationSendCenter.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -325,7 +325,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryForward',
             webcontroller__pb2.MoveInformationSendForward.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -342,7 +342,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryBackward',
             webcontroller__pb2.MoveInformationSendBackward.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -359,7 +359,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeLeft',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -376,7 +376,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeRight',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -393,7 +393,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeCenter',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -410,7 +410,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeForward',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -427,7 +427,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeBackward',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -444,7 +444,7 @@ class Agent(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryStop',
             webcontroller__pb2.MoveInformationSendStop.SerializeToString,
-            webcontroller__pb2.MoveInformationSendReply.FromString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

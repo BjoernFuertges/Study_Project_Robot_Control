@@ -26,6 +26,13 @@ def move_forward():
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryChangeRight(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        print(
+            response.name + ", " + 
+            str(response.stop) + ", " + 
+            str(response.speed) + ", " + 
+            response.direction + ", " + 
+            response.turn + ", " + 
+            str(response.radius))
     return render_template('index.html', forward_message=forward_message);
 
 @app.route("/backward/", methods=['POST'])
