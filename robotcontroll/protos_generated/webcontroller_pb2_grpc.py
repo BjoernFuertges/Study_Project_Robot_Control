@@ -20,6 +20,31 @@ class AgentStub(object):
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
                 response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
+        self.MoveInformationDeliveryLeft = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryLeft',
+                request_serializer=webcontroller__pb2.MoveInformationSendLeft.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                )
+        self.MoveInformationDeliveryRight = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryRight',
+                request_serializer=webcontroller__pb2.MoveInformationSendRight.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                )
+        self.MoveInformationDeliveryForward = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryForward',
+                request_serializer=webcontroller__pb2.MoveInformationSendForward.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                )
+        self.MoveInformationDeliveryBackward = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryBackward',
+                request_serializer=webcontroller__pb2.MoveInformationSendBackward.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                )
+        self.MoveInformationDeliveryStop = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryStop',
+                request_serializer=webcontroller__pb2.MoveInformationSendStop.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationSendReply.FromString,
+                )
 
 
 class AgentServicer(object):
@@ -33,6 +58,36 @@ class AgentServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def MoveInformationDeliveryLeft(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveInformationDeliveryRight(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveInformationDeliveryForward(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveInformationDeliveryBackward(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveInformationDeliveryStop(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_AgentServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -40,6 +95,31 @@ def add_AgentServicer_to_server(servicer, server):
                     servicer.MoveInformation,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
                     response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
+            ),
+            'MoveInformationDeliveryLeft': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryLeft,
+                    request_deserializer=webcontroller__pb2.MoveInformationSendLeft.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+            ),
+            'MoveInformationDeliveryRight': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryRight,
+                    request_deserializer=webcontroller__pb2.MoveInformationSendRight.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+            ),
+            'MoveInformationDeliveryForward': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryForward,
+                    request_deserializer=webcontroller__pb2.MoveInformationSendForward.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+            ),
+            'MoveInformationDeliveryBackward': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryBackward,
+                    request_deserializer=webcontroller__pb2.MoveInformationSendBackward.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
+            ),
+            'MoveInformationDeliveryStop': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryStop,
+                    request_deserializer=webcontroller__pb2.MoveInformationSendStop.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationSendReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -66,5 +146,90 @@ class Agent(object):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformation',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
             webcontroller__pb2.MoveInformationReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationDeliveryLeft(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryLeft',
+            webcontroller__pb2.MoveInformationSendLeft.SerializeToString,
+            webcontroller__pb2.MoveInformationSendReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationDeliveryRight(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryRight',
+            webcontroller__pb2.MoveInformationSendRight.SerializeToString,
+            webcontroller__pb2.MoveInformationSendReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationDeliveryForward(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryForward',
+            webcontroller__pb2.MoveInformationSendForward.SerializeToString,
+            webcontroller__pb2.MoveInformationSendReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationDeliveryBackward(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryBackward',
+            webcontroller__pb2.MoveInformationSendBackward.SerializeToString,
+            webcontroller__pb2.MoveInformationSendReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationDeliveryStop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryStop',
+            webcontroller__pb2.MoveInformationSendStop.SerializeToString,
+            webcontroller__pb2.MoveInformationSendReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

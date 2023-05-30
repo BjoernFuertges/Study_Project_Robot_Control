@@ -4,6 +4,12 @@ syntax = "proto3";
 service Agent {
   // Sends a greeting
   rpc MoveInformation (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryLeft (MoveInformationSendLeft) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryRight (MoveInformationSendRight) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryForward (MoveInformationSendForward) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryBackward (MoveInformationSendBackward) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryStop (MoveInformationSendStop) returns (MoveInformationSendReply) {}
+
 }
 
 // The request message containing the user's name.
@@ -19,4 +25,44 @@ message MoveInformationReply {
   string direction = 4;
   string turn = 5;
   double radius = 6;
+}
+
+message MoveInformationSendLeft {
+  string name = 1;
+  int32 speed = 3;
+  double radius = 6;
+}
+
+message MoveInformationSendRight {
+  string name = 1;
+  int32 speed = 3;
+  double radius = 6;
+}
+
+message MoveInformationSendForward {
+  string name = 1;
+  int32 speed = 3;
+  double radius = 6;
+}
+
+message MoveInformationSendBackward {
+  string name = 1;
+  int32 speed = 3;
+  double radius = 6;
+}
+
+message MoveInformationSendStop {
+  string name = 1;
+  bool stop = 2;
+}
+
+// The response message containing the greetings
+message MoveInformationSendReply {
+  string name = 1;
+  bool stop = 2;
+  int32 speed = 3;
+  string direction = 4;
+  string turn = 5;
+  double radius = 6;
+  bool success = 7;
 }

@@ -2,6 +2,10 @@
 from flask import Flask, render_template, url_for
 import requests
 
+import grpc
+from protos_generated import webcontroller_pb2
+from protos_generated import webcontroller_pb2_grpc
+
 app = Flask("Robot Controls")
 
 @app.route("/")
