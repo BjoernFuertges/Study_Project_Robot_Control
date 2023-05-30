@@ -15,7 +15,7 @@ def run():
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformation(webcontroller_pb2.MoveInformationRequest(name='you'))
-    print("Agent client received: " + response.message)
+    print("Agent client received: " + response.name + ", " + str(response.stop) + ", " + str(response.speed) + ", " + response.direction + ", " + response.turn + ", " + str(response.radius))
 
 def start():
     logging.basicConfig()

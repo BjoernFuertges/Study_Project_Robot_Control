@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13webcontroller.proto\"&\n\x16MoveInformationRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\'\n\x14MoveInformationReply\x12\x0f\n\x07message\x18\x01 \x01(\t2L\n\x05\x41gent\x12\x43\n\x0fMoveInformation\x12\x17.MoveInformationRequest\x1a\x15.MoveInformationReply\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13webcontroller.proto\"&\n\x16MoveInformationRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"r\n\x14MoveInformationReply\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04stop\x18\x02 \x01(\x08\x12\r\n\x05speed\x18\x03 \x01(\x05\x12\x11\n\tdirection\x18\x04 \x01(\t\x12\x0c\n\x04turn\x18\x05 \x01(\t\x12\x0e\n\x06radius\x18\x06 \x01(\x01\x32L\n\x05\x41gent\x12\x43\n\x0fMoveInformation\x12\x17.MoveInformationRequest\x1a\x15.MoveInformationReply\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'webcontroller_pb2', globals())
@@ -23,7 +23,7 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _MOVEINFORMATIONREQUEST._serialized_start=23
   _MOVEINFORMATIONREQUEST._serialized_end=61
   _MOVEINFORMATIONREPLY._serialized_start=63
-  _MOVEINFORMATIONREPLY._serialized_end=102
-  _AGENT._serialized_start=104
-  _AGENT._serialized_end=180
+  _MOVEINFORMATIONREPLY._serialized_end=177
+  _AGENT._serialized_start=179
+  _AGENT._serialized_end=255
 # @@protoc_insertion_point(module_scope)

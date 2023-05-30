@@ -10,7 +10,7 @@ from protos_generated import webcontroller_pb2_grpc
 class Agent(webcontroller_pb2_grpc.AgentServicer):
 
     def MoveInformation(self, request, context):
-        return webcontroller_pb2.MoveInformationReply(message='Hello, %s!' % request.name)
+        return webcontroller_pb2.MoveInformationReply(name='Hello, %s!' % request.name, stop=False, speed=100, direction="forward", turn="no", radius=0.8)
 
 
 def serve():
