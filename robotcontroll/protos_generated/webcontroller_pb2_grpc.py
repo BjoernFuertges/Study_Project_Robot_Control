@@ -15,10 +15,10 @@ class GreeterStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SayHello = channel.unary_unary(
-                '/Greeter/SayHello',
-                request_serializer=webcontroller__pb2.HelloRequest.SerializeToString,
-                response_deserializer=webcontroller__pb2.HelloReply.FromString,
+        self.Move = channel.unary_unary(
+                '/Greeter/Move',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
 
 
@@ -26,7 +26,7 @@ class GreeterServicer(object):
     """The greeting service definition.
     """
 
-    def SayHello(self, request, context):
+    def Move(self, request, context):
         """Sends a greeting
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -36,10 +36,10 @@ class GreeterServicer(object):
 
 def add_GreeterServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SayHello': grpc.unary_unary_rpc_method_handler(
-                    servicer.SayHello,
-                    request_deserializer=webcontroller__pb2.HelloRequest.FromString,
-                    response_serializer=webcontroller__pb2.HelloReply.SerializeToString,
+            'Move': grpc.unary_unary_rpc_method_handler(
+                    servicer.Move,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -53,7 +53,7 @@ class Greeter(object):
     """
 
     @staticmethod
-    def SayHello(request,
+    def Move(request,
             target,
             options=(),
             channel_credentials=None,
@@ -63,8 +63,8 @@ class Greeter(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Greeter/SayHello',
-            webcontroller__pb2.HelloRequest.SerializeToString,
-            webcontroller__pb2.HelloReply.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Greeter/Move',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
+            webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

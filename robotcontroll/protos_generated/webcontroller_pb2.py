@@ -13,17 +13,17 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13webcontroller.proto\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t23\n\x07Greeter\x12(\n\x08SayHello\x12\r.HelloRequest\x1a\x0b.HelloReply\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13webcontroller.proto\"&\n\x16MoveInformationRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\'\n\x14MoveInformationReply\x12\x0f\n\x07message\x18\x01 \x01(\t2C\n\x07Greeter\x12\x38\n\x04Move\x12\x17.MoveInformationRequest\x1a\x15.MoveInformationReply\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'webcontroller_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _HELLOREQUEST._serialized_start=23
-  _HELLOREQUEST._serialized_end=51
-  _HELLOREPLY._serialized_start=53
-  _HELLOREPLY._serialized_end=82
-  _GREETER._serialized_start=84
-  _GREETER._serialized_end=135
+  _MOVEINFORMATIONREQUEST._serialized_start=23
+  _MOVEINFORMATIONREQUEST._serialized_end=61
+  _MOVEINFORMATIONREPLY._serialized_start=63
+  _MOVEINFORMATIONREPLY._serialized_end=102
+  _GREETER._serialized_start=104
+  _GREETER._serialized_end=171
 # @@protoc_insertion_point(module_scope)
