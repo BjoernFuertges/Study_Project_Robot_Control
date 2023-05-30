@@ -9,8 +9,13 @@ service Agent {
   rpc MoveInformationDeliveryCenter (MoveInformationSendCenter) returns (MoveInformationSendReply) {}
   rpc MoveInformationDeliveryForward (MoveInformationSendForward) returns (MoveInformationSendReply) {}
   rpc MoveInformationDeliveryBackward (MoveInformationSendBackward) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryChangeLeft (MoveInformationRequest) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryChangeRight (MoveInformationRequest) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryChangeCenter (MoveInformationRequest) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryChangeForward (MoveInformationRequest) returns (MoveInformationSendReply) {}
+  rpc MoveInformationDeliveryChangeBackward (MoveInformationRequest) returns (MoveInformationSendReply) {}
   rpc MoveInformationDeliveryStop (MoveInformationSendStop) returns (MoveInformationSendReply) {}
-  rpc MoveInformationGetLastSended (MoveInformationRequest) returns (MoveInformationSendReply) {}
+  rpc MoveInformationGetLastSended (MoveInformationRequest) returns (MoveInformationReplyWithStatus) {}
 
 }
 
