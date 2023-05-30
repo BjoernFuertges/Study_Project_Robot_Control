@@ -19,6 +19,17 @@ python -m flask --app GUI run
 ```
 to serve it in your browser
 
+### GRPC start
+Start the server:
+```bash
+python .\webcontroller\webcontroller.py
+```
+
+Start the client:
+```bash
+python .\webcontroller\webcontroller_client.py
+```
+
 ## Rebuild
 ### proto
 From `/webcontroller`
