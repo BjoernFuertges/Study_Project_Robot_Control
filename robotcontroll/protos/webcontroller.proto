@@ -29,6 +29,16 @@ message MoveInformationReply {
   double radius = 6;
 }
 
+message MoveInformationReplyWithStatus {
+  string name = 1;
+  bool stop = 2;
+  int32 speed = 3;
+  string direction = 4;
+  string turn = 5;
+  double radius = 6;
+  bool passedToRobot = 7;
+}
+
 message MoveInformationSendLeft {
   string name = 1;
   int32 speed = 3;
