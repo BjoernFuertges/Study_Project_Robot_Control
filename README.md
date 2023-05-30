@@ -59,6 +59,8 @@ python -m grpc_tools.protoc -I./protos --python_out=./protos_generated --pyi_out
     3. Logo for RCI
 3. Fill about site
 4. Fill Data site
+5. Display response from the webcontroller-server on the website.
+6. Replace the previous point with: Display the actual status of the robot (fetch periodically).
 
 ### TODO Machine Learning/ Image Recognition:
 1. start.
