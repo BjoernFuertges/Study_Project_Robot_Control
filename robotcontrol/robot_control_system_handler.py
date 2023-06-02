@@ -1,4 +1,4 @@
-import website.GUI as wcc
+import robot_control_system.leader as rcsl
 import argparse
 
 if __name__ == '__main__':
@@ -9,9 +9,7 @@ if __name__ == '__main__':
                     help='IP address of the webcontroller (default: localhost)')
     parser.add_argument('--wc_port', type=int, default=50051,
                     help='Port number of the webcontroller (default: 50051)')
-    parser.add_argument('--gui_debug', type=bool, default=True,
-                    help='Activate debug modus (default: True --> debug modus is active)')
 
     args = parser.parse_args()
 
-    wcc.start(name=args.name, wc_ip=args.wc_ip, wc_port=args.wc_port, debug_modus=args.gui_debug)
+    rcsl.start(name=args.name, wc_ip=args.wc_ip, wc_port=args.wc_port)

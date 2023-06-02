@@ -8,8 +8,8 @@ import time
 import RPi.GPIO as GPIO
 import sys
 import Adafruit_PCA9685
-import ultra
-import RGB
+import robot_control_system.ultra as ultra
+import robot_control_system.RGB as RGB
 
 '''
 change this form 1 to 0 to reverse servos

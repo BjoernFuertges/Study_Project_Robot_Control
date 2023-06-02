@@ -7,7 +7,7 @@
 # Date        : 2019/07/24
 import time
 import RPi.GPIO as GPIO
-import RGB
+import robot_control_system.RGB as RGB
 
 # motor_EN_A: Pin7  |  motor_EN_B: Pin11
 # motor_A:  Pin8,Pin10    |  motor_B: Pin13,Pin12
@@ -202,9 +202,8 @@ def move_handler(in_q) -> None:
 				motorStop()
 				RGB.pink()
 				destroy()
-				print("that is the end")
 				in_q.task_done()
-				break
+				continue
 			
 			RGB.green()
 			move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())

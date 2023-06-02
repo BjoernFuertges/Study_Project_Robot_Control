@@ -17,6 +17,15 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
     
     def MoveInformationGetLastSended(self, request, context):
         return self.Sm_To_mirws()
+    
+    def MoveInformationGetNew(self, request, context):
+        self.sm.passed_to_robot = True
+        return self.Sm_To_mir()
+    
+    def MoveInformationHasNew(self, request, context):
+        return webcontroller_pb2.MoveInformationHasNewReply(
+            hasNew=(self.sm.passed_to_robot == False)
+        )
 
     def MoveInformationDeliveryLeft (self, request, context):
         self.sm.set_turn_speed_radius('left', request.speed, request.radius)
