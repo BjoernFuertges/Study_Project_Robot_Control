@@ -144,6 +144,26 @@ h1{
   background: rgb(67, 63, 63);
 }
 
+.data{
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  background: rgb(238, 217, 217);
+  color: rgb(30, 48, 80);
+  font-size: 50px;
+  border: grey; 
+  display: inline-block;
+  margin: 5px;
+  transition: all .05s linear;
+}
+
+.stop:hover{
+  background: rgb(192, 174, 174);
+}
+
+
 .up {
   position: relative;
   top: -4px;
