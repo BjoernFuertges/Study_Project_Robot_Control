@@ -31,12 +31,13 @@ def ui(out_q):
                 if mc.get_stop_working:
                     break
           
-# Create the shared queue and launch both threads
-working_queue = Queue()
-t_mh = Thread(target = move.move_handler, args =(working_queue, ))
-t_ui = Thread(target = ui, args =(working_queue, ))
-t_mh.start()
-t_ui.start()
-  
-# Wait for all produced items to be consumed
-working_queue.join()
+def start() -> None:
+    # Create the shared queue and launch both threads
+    working_queue = Queue()
+    t_mh = Thread(target = move.move_handler, args =(working_queue, ))
+    t_ui = Thread(target = ui, args =(working_queue, ))
+    t_mh.start()
+    t_ui.start()
+    
+    # Wait for all produced items to be consumed
+    working_queue.join()
