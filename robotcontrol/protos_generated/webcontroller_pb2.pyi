@@ -4,6 +4,12 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
+class MoveInformationHasNewReply(_message.Message):
+    __slots__ = ["hasNew"]
+    HASNEW_FIELD_NUMBER: _ClassVar[int]
+    hasNew: bool
+    def __init__(self, hasNew: bool = ...) -> None: ...
+
 class MoveInformationReply(_message.Message):
     __slots__ = ["direction", "name", "radius", "speed", "stop", "turn"]
     DIRECTION_FIELD_NUMBER: _ClassVar[int]
