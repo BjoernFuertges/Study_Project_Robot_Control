@@ -202,9 +202,8 @@ def move_handler(in_q) -> None:
 				motorStop()
 				RGB.pink()
 				destroy()
-				print("that is the end")
 				in_q.task_done()
-				break
+				continue
 			
 			RGB.green()
 			move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())
