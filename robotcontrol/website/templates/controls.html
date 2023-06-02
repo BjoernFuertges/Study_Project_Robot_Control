@@ -36,6 +36,14 @@
       <button class="right arr"><i class="fa fa-arrow-right"></i></button>
     </form>
   </div>
+  <div style="display:flex; flex-direction: column; justify-content: center;">
+    <form action="/displayStatus/" method="post" target = "dummyframe">
+      <button class="data"><i class="fa-light fa-database"></i></button>
+    </form>
+     {% for entry in entries %} 
+       {{entry}}
+     {% endfor %}
+  </div>
 
 </div>
 <br />
@@ -53,5 +61,5 @@
 
 <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/df17f4ba7e.js" crossorigin="anonymous"></script>
 {% endblock %}
