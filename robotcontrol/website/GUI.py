@@ -8,8 +8,9 @@ from protos_generated import webcontroller_pb2_grpc
 
 app = Flask(__name__, template_folder='templates')
 
-robot_name = "IRobot"
-
+robot_name : str
+wc_server_ip : str
+wc_server_port : int
 
 @app.route("/")
 def index():
@@ -23,7 +24,7 @@ def controls():
 def move_forward():
     #Moving forward code
     forward_message = "Moving Forward..."
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryChangeForward(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         print(
@@ -39,7 +40,7 @@ def move_forward():
 def move_backward():
     #Moving forward code
     backward_message = "Moving Back..."
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryChangeBackward(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         print(
@@ -55,7 +56,7 @@ def move_backward():
 def turn_left():
     #Turn left code
     left_message = "Turning Left..."
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryChangeLeft(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         print(
@@ -71,7 +72,7 @@ def turn_left():
 def turn_right():
     #Moving forward code
     right_message = "Turning Right..."
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryChangeRight(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         print(
@@ -83,8 +84,12 @@ def turn_right():
             str(response.radius))
     return render_template('index.html', forward_message=right_message)
 
-def start() -> None:
-    app.run(debug=True)
+def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool) -> None:
+    robot_name = name
+    wc_server_ip = wc_ip
+    wc_server_port = wc_port
+
+    app.run(debug=debug_modus)
      
 
 if __name__ == "__main__":
