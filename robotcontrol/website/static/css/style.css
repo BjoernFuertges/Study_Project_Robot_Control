@@ -83,6 +83,44 @@ h1{
   height: 200px;
   margin: auto;
 }
+.start{
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  background: rgb(238, 217, 217);
+  color: grey;
+  font-size: 50px;
+  border: grey;  
+  display: inline-block;
+  margin: 5px;
+  transition: all .05s linear;
+}
+
+
+.start:hover{
+  background: rgb(192, 174, 174);
+}
+
+.stop{
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  background: rgb(238, 217, 217);
+  color: grey;
+  font-size: 50px;
+  border: grey; 
+  display: inline-block;
+  margin: 5px;
+  transition: all .05s linear;
+}
+
+.stop:hover{
+  background: rgb(192, 174, 174);
+}
 
 .arr {
   cursor: pointer;
@@ -95,8 +133,8 @@ h1{
   font-size: 50px;
   border-right: 10px solid darken(grey, 20);
   border-bottom: 10px solid darken(grey, 20);
-  border-left: 10px solid darken(grey, 15);
-  border-top: 10px solid darken(grey, 10);  
+  border-left: 10px solid darken(grey, 20);
+  border-top: 10px solid darken(grey, 20);  
   display: inline-block;
   margin: 5px;
   transition: all .05s linear;
@@ -105,8 +143,6 @@ h1{
 .arr:hover{
   background: rgb(67, 63, 63);
 }
-
-.arr:
 
 .up {
   position: relative;

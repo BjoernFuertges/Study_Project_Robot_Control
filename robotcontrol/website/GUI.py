@@ -80,6 +80,41 @@ def turn_right():
             str(response.radius))
     return render_template('index.html', forward_message=right_message)
 
+@app.route("/start/", methods=['POST'])
+def start():
+    #Moving forward code
+    right_message = "Starting Up..."
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = webcontroller_pb2_grpc.AgentStub(channel)
+        # TODO: Pls add Start Method for Robot
+        response = stub.MoveInformationDeliveryStop(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        print(
+            response.name + ", " + 
+            str(response.stop) + ", " + 
+            str(response.speed) + ", " + 
+            response.direction + ", " + 
+            response.turn + ", " + 
+            str(response.radius))
+    return render_template('index.html', forward_message=right_message)
+
+
+@app.route("/stop/", methods=['POST'])
+def stop():
+    #Moving forward code
+    right_message = "Stopping Actions..."
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = webcontroller_pb2_grpc.AgentStub(channel)
+        # TODO: Pls add Stop Method for Robot
+        response = stub.MoveInformationDeliveryStop(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        print(
+            response.name + ", " + 
+            str(response.stop) + ", " + 
+            str(response.speed) + ", " + 
+            response.direction + ", " + 
+            response.turn + ", " + 
+            str(response.radius))
+    return render_template('index.html', forward_message=right_message)
+
 def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool) -> None:
     global robot_name
     global wc_server_ip
@@ -89,8 +124,7 @@ def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool) -> None:
     wc_server_port = wc_port
 
     app.run(debug=debug_modus)
-     
-
+  
 if __name__ == "__main__":
     app.run(debug=True)
 
