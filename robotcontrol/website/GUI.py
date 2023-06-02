@@ -8,10 +8,6 @@ from protos_generated import webcontroller_pb2_grpc
 
 app = Flask(__name__, template_folder='templates')
 
-robot_name : str
-wc_server_ip : str
-wc_server_port : int
-
 @app.route("/")
 def index():
     return render_template('index.html')
@@ -85,6 +81,9 @@ def turn_right():
     return render_template('index.html', forward_message=right_message)
 
 def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool) -> None:
+    global robot_name
+    global wc_server_ip
+    global wc_server_port
     robot_name = name
     wc_server_ip = wc_ip
     wc_server_port = wc_port
