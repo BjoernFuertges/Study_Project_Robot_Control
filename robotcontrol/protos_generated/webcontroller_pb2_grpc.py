@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import webcontroller_pb2 as webcontroller__pb2
+import protos_generated.webcontroller_pb2 as webcontroller__pb2
 
 
 class AgentStub(object):
