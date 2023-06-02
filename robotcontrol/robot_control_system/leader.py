@@ -1,6 +1,6 @@
 from queue import Queue
 from threading import Thread
-import robot_control_system.move
+import robot_control_system.move as move
 from robot_control_system.move import Move_Command
 
 import grpc
