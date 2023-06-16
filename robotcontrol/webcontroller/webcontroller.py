@@ -71,6 +71,7 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
     
     def MoveInformationDeliveryStop (self, request, context):
         self.sm.stop = request.stop
+        print("MoveInformationDeliveryStop")
         return self.Sm_To_mir()
     
     def Sm_To_mir(self) -> webcontroller_pb2.MoveInformationReply:
