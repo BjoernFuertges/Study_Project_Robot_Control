@@ -30,9 +30,9 @@ def ui(out_q, robot_name : str, wc_ip : str, wc_port : int):
 
                 out_q.put(mc)
 
-                if mc.get_stop_working:
+                if mc.get_stop_working():
                     print("Stop!")
-                    break
+                    continue
           
 def start(name : str, wc_ip : str, wc_port : int) -> None:
     # Create the shared queue and launch both threads
