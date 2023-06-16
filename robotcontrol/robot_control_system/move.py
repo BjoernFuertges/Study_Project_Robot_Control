@@ -81,6 +81,15 @@ class Move_Command:
 	def get_radius(self) -> float:
 		return self.radius
 
+	def to_string(self) -> str:
+		return \
+			"\nMove_Command: \n\t" + \
+			"stop_working:" + 	stop_working + "\n\t" + \
+			"speed:" 		+ 	speed + "\n\t" + \
+			"direction:" 	+ 	direction + "\n\t" + \
+			"turn:" 		+ 	turn + "\n\t" + \
+			"radius:" 		+ 	radius + "\n"
+
 def motorStop() -> None:#Motor stops
 	GPIO.output(Motor_A_Pin1, GPIO.LOW)
 	GPIO.output(Motor_A_Pin2, GPIO.LOW)

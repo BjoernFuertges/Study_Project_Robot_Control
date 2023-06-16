@@ -26,9 +26,12 @@ def ui(out_q, robot_name : str, wc_ip : str, wc_port : int):
                 mc.set_stop_working(response.stop)
                 mc.set_turn(response.turn)
 
+                print(mc.to_string())
+
                 out_q.put(mc)
 
                 if mc.get_stop_working:
+                    print("Stop!")
                     break
           
 def start(name : str, wc_ip : str, wc_port : int) -> None:
