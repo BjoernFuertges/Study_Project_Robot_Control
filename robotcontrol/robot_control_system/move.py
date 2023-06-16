@@ -84,11 +84,11 @@ class Move_Command:
 	def to_string(self) -> str:
 		return \
 			"\nMove_Command: \n\t" + \
-			"stop_working:" + 	self.stop_working + "\n\t" + \
-			"speed:" 		+ 	self.speed + "\n\t" + \
-			"direction:" 	+ 	self.direction + "\n\t" + \
-			"turn:" 		+ 	self.turn + "\n\t" + \
-			"radius:" 		+ 	self.radius + "\n"
+			"stop_working:" + 	str(self.stop_working) + "\n\t" + \
+			"speed:" 		+ 	str(self.speed) + "\n\t" + \
+			"direction:" 	+ 	str(self.direction) + "\n\t" + \
+			"turn:" 		+ 	str(self.turn) + "\n\t" + \
+			"radius:" 		+ 	str(self.radius) + "\n"
 
 def motorStop() -> None:#Motor stops
 	GPIO.output(Motor_A_Pin1, GPIO.LOW)
