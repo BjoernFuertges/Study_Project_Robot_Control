@@ -51,7 +51,7 @@ python -m grpc_tools.protoc -I./protos --python_out=./protos_generated --pyi_out
 ### JINJA
 
 To get access to HTML elements with Python its necessary to use Jinja or JavaScript
-
+n
 https://jinja.palletsprojects.com/en/3.1.x/
 
 ## TODO
