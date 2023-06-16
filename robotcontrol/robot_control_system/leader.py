@@ -14,6 +14,8 @@ def ui(out_q, robot_name : str, wc_ip : str, wc_port : int):
             stub = webcontroller_pb2_grpc.AgentStub(channel)
             response = stub.MoveInformationHasNew(webcontroller_pb2.MoveInformationRequest(name=robot_name))
             
+            print(response.hasNew)
+
             if response.hasNew:
                 response = stub.MoveInformation(webcontroller_pb2.MoveInformationRequest(name=robot_name))
                 

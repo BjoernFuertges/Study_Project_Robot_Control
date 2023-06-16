@@ -60,6 +60,8 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
         return self.Sm_To_mir()
 
     def MoveInformationDeliveryChangeForward (self, request, context):
+        logging.debug("Called MoveInformationDeliveryChangeForward")
+        print("Called MoveInformationDeliveryChangeForward")
         self.sm.direction = 'forward'
         return self.Sm_To_mir()
     
