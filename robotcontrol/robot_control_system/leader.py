@@ -40,6 +40,7 @@ def start(name : str, wc_ip : str, wc_port : int) -> None:
     # Create the shared queue and launch both threads
     working_queue = Queue()
     m = move.Move()
+    stop_threads = False
     t_mh = Thread(target = m.move_handler, args =(working_queue, lambda: stop_threads))
     t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port, lambda: stop_threads))
     t_mh.start()
@@ -48,8 +49,6 @@ def start(name : str, wc_ip : str, wc_port : int) -> None:
     try:
         # Wait for all produced items to be consumed
         working_queue.join()
-        t_mh.join()
-        t_ui.join()
 
     except KeyboardInterrupt:
         stop_threads = True
