@@ -106,7 +106,7 @@ class Move:
 				self.pwm_A.ChangeDutyCycle(speed)
 			elif direction == self.Dir_backward:
 				GPIO.output(self.Motor_A_Pin1, GPIO.LOW)
-				GPIO.output(self.self.Motor_A_Pin2, GPIO.HIGH)
+				GPIO.output(self.Motor_A_Pin2, GPIO.HIGH)
 				self.pwm_A.start(0)
 				self.pwm_A.ChangeDutyCycle(speed)
 
