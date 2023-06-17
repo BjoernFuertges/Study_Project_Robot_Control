@@ -15,7 +15,7 @@ def ui(out_q, robot_name : str, wc_ip : str, wc_port : int):
             response = stub.MoveInformationHasNew(webcontroller_pb2.MoveInformationRequest(name=robot_name))
             
 
-            if response.hasNew:
+            if response.hasNew == True:
                 print(response.hasNew)
                 
                 response = stub.MoveInformationGetNew(webcontroller_pb2.MoveInformationRequest(name=robot_name))
