@@ -196,6 +196,7 @@ def destroy():
 	GPIO.cleanup()             # Release resource
 
 def move_handler(in_q) -> None:
+	global rgb
 	rgb = RGB.RGB()
 	try:
 		print(setup_completed)
