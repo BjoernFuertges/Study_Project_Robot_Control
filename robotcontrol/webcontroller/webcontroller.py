@@ -48,29 +48,29 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryChangeLeft (self, request, context):
-        self.sm.turn = 'left'
+        self.sm.set_turn(turn='left')
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryChangeRight (self, request, context):
-        self.sm.turn = 'right'
+        self.sm.set_turn(turn='right')
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryChangeCenter (self, request, context):
-        self.sm.turn = 'no'
+        self.sm.set_turn(turn='no')
         return self.Sm_To_mir()
 
     def MoveInformationDeliveryChangeForward (self, request, context):
         logging.debug("Called MoveInformationDeliveryChangeForward")
         print("Called MoveInformationDeliveryChangeForward")
-        self.sm.direction = 'forward'
+        self.sm.set_direction(direction='forward')
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryChangeBackward (self, request, context):
-        self.sm.direction = 'backward'
+        self.sm.set_direction(direction='backward')
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryStop (self, request, context):
-        self.sm.stop = request.stop
+        self.sm.set_stop(stop=request.stop)
         print("MoveInformationDeliveryStop")
         return self.Sm_To_mir()
     
