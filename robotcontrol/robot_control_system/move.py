@@ -146,8 +146,8 @@ class Move:
 		else:
 			pass
 
-	def move_handler(self, in_q) -> None:
-		while True:
+	def move_handler(self, in_q, stop) -> None:
+		while stop() != True:
 			# Get some data
 			mc = in_q.get()
 

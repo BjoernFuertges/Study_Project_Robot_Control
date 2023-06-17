@@ -8,8 +8,8 @@ from protos_generated import webcontroller_pb2
 from protos_generated import webcontroller_pb2_grpc
 
 # A thread that produces data
-def ui(out_q, robot_name : str, wc_ip : str, wc_port : int):
-    while(True):
+def ui(out_q, robot_name : str, wc_ip : str, wc_port : int, stop):
+    while(stop() != True):
         with grpc.insecure_channel(wc_ip + ":" + str(wc_port)) as channel:
             stub = webcontroller_pb2_grpc.AgentStub(channel)
             response = stub.MoveInformationHasNew(webcontroller_pb2.MoveInformationRequest(name=robot_name))
@@ -40,11 +40,17 @@ def start(name : str, wc_ip : str, wc_port : int) -> None:
     # Create the shared queue and launch both threads
     working_queue = Queue()
     m = move.Move()
-    t_mh = Thread(target = m.move_handler, args =(working_queue, ))
-    t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port,))
+    t_mh = Thread(target = m.move_handler, args =(working_queue, lambda: stop_threads))
+    t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port, lambda: stop_threads))
     t_mh.start()
     t_ui.start()
-        
+    
+    try:
         # Wait for all produced items to be consumed
-    working_queue.join()
-    del m
+        working_queue.join()
+
+    except KeyboardInterrupt:
+        stop_threads = True
+        t_mh.join()
+        t_ui.join()
+        del m
