@@ -196,31 +196,34 @@ def destroy():
 	GPIO.cleanup()             # Release resource
 
 def move_handler(in_q) -> None:
-	if setup_completed == False:
-		RGB.setup()
-		RGB.red()
-		setup()
-		RGB.blue()
+	try:
+		if setup_completed == False:
+			RGB.setup()
+			RGB.red()
+			setup()
+			RGB.blue()
 
-	while True:
-		# Get some data
-		mc = in_q.get()
+		while True:
+			# Get some data
+			mc = in_q.get()
 
-		if mc != None:
-			if mc.get_stop_working():
-				motorStop()
-				RGB.pink()
-				destroy()
+			if mc != None:
+				if mc.get_stop_working():
+					motorStop()
+					RGB.pink()
+					destroy()
+					in_q.task_done()
+					continue
+				
+				RGB.green()
+				move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())
 				in_q.task_done()
-				continue
-			
-			RGB.green()
-			move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())
-			in_q.task_done()
 
-		# Process the data..
-        # Indicate completion
-		#in_q.task_done()
+			# Process the data..
+			# Indicate completion
+			#in_q.task_done()
+	except KeyboardInterrupt:
+		destroy()
 
 if __name__ == '__main__':
 	RGB.setup()
