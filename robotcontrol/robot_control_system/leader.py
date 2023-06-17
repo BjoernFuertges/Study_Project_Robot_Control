@@ -48,6 +48,8 @@ def start(name : str, wc_ip : str, wc_port : int) -> None:
     try:
         # Wait for all produced items to be consumed
         working_queue.join()
+        t_mh.join()
+        t_ui.join()
 
     except KeyboardInterrupt:
         stop_threads = True
