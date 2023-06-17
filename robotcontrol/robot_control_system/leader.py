@@ -38,7 +38,8 @@ def ui(out_q, robot_name : str, wc_ip : str, wc_port : int):
 def start(name : str, wc_ip : str, wc_port : int) -> None:
     # Create the shared queue and launch both threads
     working_queue = Queue()
-    t_mh = Thread(target = move.move_handler, args =(working_queue, ))
+    m = move.Move()
+    t_mh = Thread(target = m.move_handler, args =(working_queue, ))
     t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port,))
     t_mh.start()
     t_ui.start()
