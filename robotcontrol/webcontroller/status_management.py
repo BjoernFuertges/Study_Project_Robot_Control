@@ -13,7 +13,7 @@ class status_manager:
         self.speed = 100
         self.direction = 'forward'
         self.turn = 'no'
-        self.radius = 0.8
+        self.radius = 0.0
         self.passed_to_robot = False
 
     def set_turn(self, turn : str) -> None:
@@ -25,7 +25,7 @@ class status_manager:
         if turn == 'left' or turn == 'right' or turn == 'no':
             self.turn = turn
             self.speed = speed
-            self.radius = radius
+            self.set_radius(radius)
             self.passed_to_robot = False
 
     def set_direction(self, direction : str) -> None:
@@ -37,12 +37,29 @@ class status_manager:
         if direction == 'forward' or direction == 'backward' or direction == 'no':
             self.direction = direction
             self.speed = speed
-            self.radius = radius
+            self.set_radius(radius)
             self.passed_to_robot = False
 
     def change_radius(self, radius : float) -> None:
-        self.radius += radius
+        radiusTmp = self.radius + radius
+        if radiusTmp >= 1:
+            self.radius = 1
+        elif radiusTmp <= 0:
+            self.radius = 0
+        else:
+            self.radius = radiusTmp
         self.passed_to_robot = False
+
+    def set_radius(self, radius : float, setPTR : bool = False) -> None:
+        if radius >= 1:
+            self.radius = 1
+        elif radius <= 0:
+            self.radius = 0
+        else:
+            self.radius = radius
+
+        if setPTR:
+            self.passed_to_robot = False
 
     def set_stop(self, stop : bool) -> None:
         self.stop = stop
