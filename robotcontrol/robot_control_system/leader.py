@@ -36,16 +36,15 @@ def ui(out_q, robot_name : str, wc_ip : str, wc_port : int):
                     continue
           
 def start(name : str, wc_ip : str, wc_port : int) -> None:
-    try:
-        # Create the shared queue and launch both threads
-        working_queue = Queue()
-        m = move.Move()
-        t_mh = Thread(target = m.move_handler, args =(working_queue, ))
-        t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port,))
-        t_mh.start()
-        t_ui.start()
+    
+    # Create the shared queue and launch both threads
+    working_queue = Queue()
+    m = move.Move()
+    t_mh = Thread(target = m.move_handler, args =(working_queue, ))
+    t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port,))
+    t_mh.start()
+    t_ui.start()
         
         # Wait for all produced items to be consumed
-        working_queue.join()
-    except KeyboardInterrupt:
-        del m
+    working_queue.join()
+    del m
