@@ -123,7 +123,7 @@ def returnStatus() :
         status = [str(response.speed), str(response.speed), response.direction, response.turn, response.turn, response.radius, response.stop]
     return render_template('index.html', entries=status)
 
-def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool) -> None:
+def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool, gui_ip : str, gui_port : int) -> None:
     global robot_name
     global wc_server_ip
     global wc_server_port
@@ -131,7 +131,7 @@ def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool) -> None:
     wc_server_ip = wc_ip
     wc_server_port = wc_port
 
-    app.run(debug=debug_modus)
+    app.run(debug=debug_modus, host=gui_ip, port=gui_port)
   
 if __name__ == "__main__":
     app.run(debug=True)
