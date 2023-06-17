@@ -1,7 +1,7 @@
 from queue import Queue
 from threading import Thread
 import robot_control_system.move as move
-from robot_control_system.move import Move_Command
+from robot_control_system.move_command import Move_Command
 
 import grpc
 from protos_generated import webcontroller_pb2
