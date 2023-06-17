@@ -1,6 +1,7 @@
 from queue import Queue
 from threading import Thread
 import robot_control_system.move as move
+import robot_control_system.camera as camera
 from robot_control_system.move_command import Move_Command
 
 import grpc
@@ -43,7 +44,8 @@ def start(name : str, wc_ip : str, wc_port : int) -> None:
     stop_threads = False
     t_mh = Thread(target = m.move_handler, args =(working_queue, lambda: stop_threads))
     t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port, lambda: stop_threads))
-    
+    c = camera.BaseCamera()
+
     t_mh.start()
     t_ui.start()
 
