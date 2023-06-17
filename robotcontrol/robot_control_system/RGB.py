@@ -27,13 +27,13 @@ class RGB:
     def __init__(self):#initialization
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(left_R, GPIO.OUT)
-        GPIO.setup(left_G, GPIO.OUT)
-        GPIO.setup(left_B, GPIO.OUT)
-        GPIO.setup(right_R, GPIO.OUT)
-        GPIO.setup(right_G, GPIO.OUT)
-        GPIO.setup(right_B, GPIO.OUT)
-        both_off()
+        GPIO.setup(self.left_R, GPIO.OUT)
+        GPIO.setup(self.left_G, GPIO.OUT)
+        GPIO.setup(self.left_B, GPIO.OUT)
+        GPIO.setup(self.right_R, GPIO.OUT)
+        GPIO.setup(self.right_G, GPIO.OUT)
+        GPIO.setup(self.right_B, GPIO.OUT)
+        self.both_off()
 
     def both_on(self):
         GPIO.output(left_R, on)
