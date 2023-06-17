@@ -44,15 +44,21 @@ def start(name : str, wc_ip : str, wc_port : int) -> None:
     t_mh = Thread(target = m.move_handler, args =(working_queue, lambda: stop_threads))
     t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port, lambda: stop_threads))
     
-    try:
-        t_mh.start()
-        t_ui.start()
-    
-        # Wait for all produced items to be consumed
-        working_queue.join()
+    t_mh.start()
+    t_ui.start()
 
-    except KeyboardInterrupt:
-        stop_threads = True
-        t_mh.join()
-        t_ui.join()
-        print("Bye")
+    # Wait for all produced items to be consumed
+    #working_queue.join()
+
+    #except KeyboardInterrupt:
+    doNotStop = True
+    while(doNotStop):
+        text = input()
+
+        if text == "exit":
+            doNotStop = False
+    
+    stop_threads = True
+    t_mh.join()
+    t_ui.join()
+    print("Bye")
