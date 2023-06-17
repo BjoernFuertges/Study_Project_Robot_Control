@@ -32,7 +32,7 @@ class Move:
 	right_forward = 0
 	right_backward= 1
 
-	pwn_A = 0
+	pwm_A = 0
 	pwm_B = 0
 
 	rgb : RGB.RGB
@@ -53,7 +53,7 @@ class Move:
 
 		self.motorStop()
 		try:
-			pwm_A = GPIO.PWM(self.Motor_A_EN, 1000)
+			self.pwm_A = GPIO.PWM(self.Motor_A_EN, 1000)
 			self.pwm_B = GPIO.PWM(self.Motor_B_EN, 1000)
 		except:
 			pass
@@ -102,13 +102,13 @@ class Move:
 			if direction == self.Dir_forward:#
 				GPIO.output(self.Motor_A_Pin1, GPIO.HIGH)
 				GPIO.output(self.Motor_A_Pin2, GPIO.LOW)
-				pwm_A.start(100)
-				pwm_A.ChangeDutyCycle(speed)
+				self.pwm_A.start(100)
+				self.pwm_A.ChangeDutyCycle(speed)
 			elif direction == self.Dir_backward:
 				GPIO.output(self.Motor_A_Pin1, GPIO.LOW)
 				GPIO.output(self.self.Motor_A_Pin2, GPIO.HIGH)
-				pwm_A.start(0)
-				pwm_A.ChangeDutyCycle(speed)
+				self.pwm_A.start(0)
+				self.pwm_A.ChangeDutyCycle(speed)
 
 
 	def move(self, speed : int, direction : str, turn : str, radius : float = 0.6):   # 0 < radius <= 1  
