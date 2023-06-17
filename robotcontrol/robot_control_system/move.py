@@ -7,7 +7,7 @@
 # Date        : 2019/07/24
 import time
 import RPi.GPIO as GPIO
-import robot_control_system.RGB as RGB
+import robot_control_system.RGB.RGB as RGB
 
 # motor_EN_A: Pin7  |  motor_EN_B: Pin11
 # motor_A:  Pin8,Pin10    |  motor_B: Pin13,Pin12
@@ -196,13 +196,14 @@ def destroy():
 	GPIO.cleanup()             # Release resource
 
 def move_handler(in_q) -> None:
+	rgb = RGB()
 	try:
 		print(setup_completed)
 		if setup_completed == False:
-			RGB.setup()
-			RGB.red()
+			rgb.setup()
+			rgb.red()
 			setup()
-			RGB.blue()
+			rgb.blue()
 
 		while True:
 			# Get some data
@@ -211,12 +212,12 @@ def move_handler(in_q) -> None:
 			if mc != None:
 				if mc.get_stop_working():
 					motorStop()
-					RGB.pink()
+					rgb.pink()
 					destroy()
 					in_q.task_done()
 					continue
 				
-				RGB.green()
+				rgb.green()
 				move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())
 				in_q.task_done()
 
@@ -227,8 +228,9 @@ def move_handler(in_q) -> None:
 		destroy()
 
 if __name__ == '__main__':
-	RGB.setup()
-	RGB.yellow()
+	rgb = RGB()
+	rgb.setup()
+	rgb.yellow()
 	#RGB.police(4)
 	try:
 		speed_set = 100
@@ -236,7 +238,7 @@ if __name__ == '__main__':
 		move(speed_set, 'forward', 'no', 0.8)
 		time.sleep(1.3)
 		motorStop()
-		RGB.green()
+		rgb.green()
 		destroy()
 		print("that is the end")
 	except KeyboardInterrupt:
