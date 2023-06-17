@@ -38,9 +38,9 @@ class Move:
 	rgb : RGB.RGB
 
 	def __init__(self):#Motor initialization
-		rgb = RGB.RGB()
+		self.rgb = RGB.RGB()
 		
-		rgb.red()
+		self.rgb.red()
 
 		GPIO.setwarnings(False)
 		GPIO.setmode(GPIO.BCM)
@@ -58,7 +58,7 @@ class Move:
 		except:
 			pass
 
-		rgb.blue()
+		self.rgb.blue()
 
 	def __del__(self):
 		self.motorStop()
@@ -154,12 +154,12 @@ class Move:
 				if mc != None:
 					if mc.get_stop_working():
 						self.motorStop()
-						rgb.pink()
+						self.rgb.pink()
 						destroy()
 						in_q.task_done()
 						continue
 					
-					rgb.green()
+					self.rgb.green()
 					self.move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())
 					in_q.task_done()
 
