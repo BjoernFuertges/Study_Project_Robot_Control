@@ -55,6 +55,16 @@ class AgentStub(object):
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
                 response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
+        self.MoveInformationDeliveryChangeLeftChange = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryChangeLeftChange',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
+                )
+        self.MoveInformationDeliveryChangeRightChange = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryChangeRightChange',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
+                )
         self.MoveInformationDeliveryChangeCenter = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryChangeCenter',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
@@ -145,6 +155,18 @@ class AgentServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def MoveInformationDeliveryChangeLeftChange(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveInformationDeliveryChangeRightChange(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def MoveInformationDeliveryChangeCenter(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -227,6 +249,16 @@ def add_AgentServicer_to_server(servicer, server):
             ),
             'MoveInformationDeliveryChangeRight': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryChangeRight,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
+            ),
+            'MoveInformationDeliveryChangeLeftChange': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryChangeLeftChange,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
+            ),
+            'MoveInformationDeliveryChangeRightChange': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryChangeRightChange,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
                     response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
@@ -407,6 +439,40 @@ class Agent(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeRight',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
+            webcontroller__pb2.MoveInformationReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationDeliveryChangeLeftChange(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeLeftChange',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
+            webcontroller__pb2.MoveInformationReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationDeliveryChangeRightChange(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeRightChange',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
             webcontroller__pb2.MoveInformationReply.FromString,
             options, channel_credentials,

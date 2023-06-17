@@ -11,6 +11,8 @@ service Agent {
   rpc MoveInformationDeliveryBackward (MoveInformationSendBackward) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeLeft (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeRight (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryChangeLeftChange (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryChangeRightChange (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeCenter (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeForward (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeBackward (MoveInformationRequest) returns (MoveInformationReply) {}
