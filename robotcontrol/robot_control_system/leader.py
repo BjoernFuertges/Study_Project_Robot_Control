@@ -12,12 +12,12 @@ def ui(out_q, robot_name : str, wc_ip : str, wc_port : int):
     while(True):
         with grpc.insecure_channel(wc_ip + ":" + str(wc_port)) as channel:
             stub = webcontroller_pb2_grpc.AgentStub(channel)
-            response = stub.MoveInformationHasNew(webcontroller_pb2.MoveInformationHasNew(name=robot_name))
+            response = stub.MoveInformationHasNew(webcontroller_pb2.MoveInformation(name=robot_name))
             
             print(response.hasNew)
 
             if response.hasNew:
-                response = stub.MoveInformation(webcontroller_pb2.MoveInformationGetNew(name=robot_name))
+                response = stub.MoveInformationGetNew(webcontroller_pb2.MoveInformation(name=robot_name))
                 
                 mc = Move_Command()
                 mc.set_direction(response.direction)
