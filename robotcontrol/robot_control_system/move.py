@@ -7,7 +7,7 @@
 # Date        : 2019/07/24
 import time
 import RPi.GPIO as GPIO
-import robot_control_system.RGB.RGB as RGB
+import robot_control_system.RGB as RGB
 
 # motor_EN_A: Pin7  |  motor_EN_B: Pin11
 # motor_A:  Pin8,Pin10    |  motor_B: Pin13,Pin12
