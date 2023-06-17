@@ -36,62 +36,62 @@ class RGB:
         self.both_off()
 
     def both_on(self):
-        GPIO.output(left_R, on)
-        GPIO.output(left_G, on)
-        GPIO.output(left_B, on)
+        GPIO.output(self.left_R, self.on)
+        GPIO.output(self.left_G, self.on)
+        GPIO.output(self.left_B, self.on)
 
-        GPIO.output(right_R, on)
-        GPIO.output(right_G, on)
-        GPIO.output(right_B, on)
+        GPIO.output(self.right_R, self.on)
+        GPIO.output(self.right_G, self.on)
+        GPIO.output(self.right_B, self.on)
 
 
     def both_off(self):
-        GPIO.output(left_R, off)
-        GPIO.output(left_G, off)
-        GPIO.output(left_B, off)
+        GPIO.output(self.left_R, self.off)
+        GPIO.output(self.left_G, self.off)
+        GPIO.output(self.left_B, self.off)
 
-        GPIO.output(right_R, off)
-        GPIO.output(right_G, off)
-        GPIO.output(right_B, off)
+        GPIO.output(self.right_R, self.off)
+        GPIO.output(self.right_G, self.off)
+        GPIO.output(self.right_B, self.off)
 
     def side_on(self, side_X):
-        GPIO.output(side_X, on)
+        GPIO.output(side_X, self.on)
 
     def side_off(self, side_X):
-        GPIO.output(side_X, off)
+        GPIO.output(side_X, self.off)
 
     def police(self, police_time):
         for i in range (1,police_time):
             for i in range (1,3):
-                side_on(left_R)
-                side_on(right_B)
+                side_on(self.left_R)
+                side_on(self.right_B)
                 time.sleep(0.1)
                 both_off()
-                side_on(left_B)
-                side_on(right_R)
+                side_on(self.left_B)
+                side_on(self.right_R)
                 time.sleep(0.1)
                 both_off()
             for i in range (1,5):
-                side_on(left_R)
-                side_on(right_B)
+                side_on(self.left_R)
+                side_on(self.right_B)
                 time.sleep(0.3)
                 both_off()
-                side_on(left_B)
-                side_on(right_R)
+                side_on(self.left_B)
+                side_on(self.right_R)
                 time.sleep(0.3)
                 both_off()
 
     def red(self):
-        side_on(right_R)
-        side_on(left_R)
+        side_on(self.right_R)
+        side_on(self.left_R)
 
     def green(self):
-        side_on(right_G)
-        side_on(left_G)
+        side_on(self.right_G)
+        side_on(self.left_G)
 
     def blue(self):
-        side_on(right_B)
-        side_on(left_B)
+        side_on(self.right_B)
+        side_on(self.left_B)
 
     def yellow(self):
         red()
@@ -106,18 +106,18 @@ class RGB:
         green()
 
     def side_color_on(self, side_X,side_Y):
-        GPIO.output(side_X, on)
-        GPIO.output(side_Y, on)
+        GPIO.output(side_X, self.on)
+        GPIO.output(side_Y, self.on)
 
     def side_color_off(self, side_X,side_Y):
-        GPIO.output(side_X, off)
-        GPIO.output(side_Y, off)
+        GPIO.output(side_X, self.off)
+        GPIO.output(side_Y, self.off)
 
     def turn_left(self, times):
         for i in range(0,times):
             both_off()
-            side_on(left_G)
-            side_on(left_R)
+            side_on(self.left_G)
+            side_on(self.left_R)
             time.sleep(0.5)
             both_off()
             time.sleep(0.5)
@@ -125,8 +125,8 @@ class RGB:
     def turn_right(self, times):
         for i in range(1,times):
             both_off()
-            side_on(right_G)
-            side_on(right_R)
+            side_on(self.right_G)
+            side_on(self.right_R)
             time.sleep(0.5)
             both_off()
             time.sleep(0.5)
