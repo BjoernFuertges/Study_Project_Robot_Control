@@ -60,7 +60,7 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
     def MoveInformationDeliveryChangeLeftChange (self, request, context):
         if self.sm.turn == "right":
             if self.sm.radius <= self.radiusChangeFactor:
-                self.sm.set_turn(turn='left')
+                self.sm.set_turn_radius(turn='left', radius=0.0)
             else:
                 self.sm.change_radius(-self.radiusChangeFactor)
         elif self.sm.turn == "left":
@@ -75,7 +75,7 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
     def MoveInformationDeliveryChangeRightChange (self, request, context):
         if self.sm.turn == "left":
             if self.sm.radius <= self.radiusChangeFactor:
-                self.sm.set_turn(turn='right')
+                self.sm.set_turn_radius(turn='right', radius=0)
             else:
                 self.sm.change_radius(-self.radiusChangeFactor)
         elif self.sm.turn == "right":
