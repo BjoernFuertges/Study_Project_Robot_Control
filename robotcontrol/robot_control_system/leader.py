@@ -54,4 +54,4 @@ def start(name : str, wc_ip : str, wc_port : int) -> None:
         stop_threads = True
         t_mh.join()
         t_ui.join()
-        del m
+        print("Bye")
