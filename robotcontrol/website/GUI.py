@@ -54,7 +54,7 @@ def turn_left():
     left_message = "Turning Left..."
     with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
-        response = stub.MoveInformationDeliveryChangeLeft(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        response = stub.MoveInformationDeliveryChangeLeftChange(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         print(
             response.name + ", " + 
             str(response.stop) + ", " + 
@@ -70,7 +70,7 @@ def turn_right():
     right_message = "Turning Right..."
     with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
-        response = stub.MoveInformationDeliveryChangeRight(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        response = stub.MoveInformationDeliveryChangeRightChange(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         print(
             response.name + ", " + 
             str(response.stop) + ", " + 
