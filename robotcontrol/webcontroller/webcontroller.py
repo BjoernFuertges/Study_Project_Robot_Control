@@ -10,6 +10,8 @@ from protos_generated import webcontroller_pb2_grpc
 from webcontroller import status_management
 
 class Agent(webcontroller_pb2_grpc.AgentServicer):
+    radiusChangeFactor = 0.2
+
     sm = status_management.status_manager("IRobot")
 
     def MoveInformation(self, request, context):
@@ -57,31 +59,31 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
     
     def MoveInformationDeliveryChangeLeftChange (self, request, context):
         if self.sm.turn == "right":
-            if self.sm.radius <= 0.8:
+            if self.sm.radius <= radiusChangeFactor:
                 self.sm.set_turn(turn='left')
             else:
-                self.sm.change_radius(-0.8)
+                self.sm.change_radius(-radiusChangeFactor)
         elif self.sm.turn == "left":
-            self.sm.change_radius(0.8)
+            self.sm.change_radius(radiusChangeFactor)
         else:
             # turn = "no"
             self.sm.set_turn(turn='left')
-            self.sm.change_radius(0.8)
+            self.sm.change_radius(radiusChangeFactor)
 
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryChangeRightChange (self, request, context):
         if self.sm.turn == "left":
-            if self.sm.radius <= 0.8:
+            if self.sm.radius <= radiusChangeFactor:
                 self.sm.set_turn(turn='right')
             else:
-                self.sm.change_radius(-0.8)
+                self.sm.change_radius(-radiusChangeFactor)
         elif self.sm.turn == "right":
-            self.sm.change_radius(0.8)
+            self.sm.change_radius(radiusChangeFactor)
         else:
             # turn = "no"
             self.sm.set_turn(turn='right')
-            self.sm.change_radius(0.8)
+            self.sm.change_radius(radiusChangeFactor)
 
         
         return self.Sm_To_mir()
