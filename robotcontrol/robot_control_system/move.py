@@ -146,28 +146,25 @@ class Move:
 			pass
 
 	def move_handler(self, in_q) -> None:
-		try:		
-			while True:
-				# Get some data
-				mc = in_q.get()
+		while True:
+			# Get some data
+			mc = in_q.get()
 
-				if mc != None:
-					if mc.get_stop_working():
-						self.motorStop()
-						self.rgb.pink()
-						destroy()
-						in_q.task_done()
-						continue
-					
-					self.rgb.green()
-					self.move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())
+			if mc != None:
+				if mc.get_stop_working():
+					self.motorStop()
+					self.rgb.pink()
 					in_q.task_done()
+					continue
+				
+				self.rgb.green()
+				self.move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())
+				in_q.task_done()
 
-				# Process the data..
-				# Indicate completion
-				#in_q.task_done()
-		except KeyboardInterrupt:
-			destroy()
+			# Process the data..
+			# Indicate completion
+			#in_q.task_done()
+		
 
 if __name__ == '__main__':
 	m : Move
