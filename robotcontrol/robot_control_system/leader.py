@@ -47,20 +47,9 @@ def start(name : str, wc_ip : str, wc_port : int) -> None:
     t_mh.start()
     t_ui.start()
 
-    # Wait for all produced items to be consumed
-    #working_queue.join()
-
     try:
-        doNotStop = True
-        while(doNotStop):
-            text = input("exit?")
-
-            if text == "exit":
-                doNotStop = False
-                stop_threads = True
-                t_mh.join()
-                t_ui.join()
-                print("Bye")
+        # Wait for all produced items to be consumed
+        working_queue.join()
     except KeyboardInterrupt:
         stop_threads = True
         t_mh.join()
