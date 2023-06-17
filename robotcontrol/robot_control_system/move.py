@@ -200,7 +200,6 @@ def move_handler(in_q) -> None:
 	try:
 		print(setup_completed)
 		if setup_completed == False:
-			rgb.setup()
 			rgb.red()
 			setup()
 			rgb.blue()
