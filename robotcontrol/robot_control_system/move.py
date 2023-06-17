@@ -197,6 +197,7 @@ def destroy():
 
 def move_handler(in_q) -> None:
 	try:
+		print(setup_completed)
 		if setup_completed == False:
 			RGB.setup()
 			RGB.red()
