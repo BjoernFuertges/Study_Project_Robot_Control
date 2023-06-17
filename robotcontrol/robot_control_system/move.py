@@ -41,7 +41,6 @@ class Move:
 		rgb = RGB.RGB()
 		
 		rgb.red()
-		setup()
 
 		GPIO.setwarnings(False)
 		GPIO.setmode(GPIO.BCM)
@@ -52,7 +51,7 @@ class Move:
 		GPIO.setup(self.Motor_B_Pin1, GPIO.OUT)
 		GPIO.setup(self.Motor_B_Pin2, GPIO.OUT)
 
-		motorStop()
+		self.motorStop()
 		try:
 			pwm_A = GPIO.PWM(self.Motor_A_EN, 1000)
 			self.pwm_B = GPIO.PWM(self.Motor_B_EN, 1000)
@@ -62,7 +61,7 @@ class Move:
 		rgb.blue()
 
 	def __del__(self):
-		motorStop()
+		self.motorStop()
 		GPIO.cleanup()             # Release resource
 
 	def motorStop(self) -> None:#Motor stops
@@ -116,33 +115,33 @@ class Move:
 		#speed = 100
 		if direction == 'forward':
 			if turn == 'right':
-				motor_left(0, self.left_backward, int(speed*radius))
-				motor_right(1, self.right_forward, speed)
+				self.motor_left(0, self.left_backward, int(speed*radius))
+				self.motor_right(1, self.right_forward, speed)
 			elif turn == 'left':
-				motor_left(1, self.left_forward, speed)
-				motor_right(0, self.right_backward, int(speed*radius))
+				self.motor_left(1, self.left_forward, speed)
+				self.motor_right(0, self.right_backward, int(speed*radius))
 			else:
-				motor_left(1, self.left_forward, speed)
-				motor_right(1, self.right_forward, speed)
+				self.motor_left(1, self.left_forward, speed)
+				self.motor_right(1, self.right_forward, speed)
 		elif direction == 'backward':
 			if turn == 'right':
-				motor_left(0, self.left_forward, int(speed*radius))
-				motor_right(1, self.right_backward, speed)
+				self.motor_left(0, self.left_forward, int(speed*radius))
+				self.motor_right(1, self.right_backward, speed)
 			elif turn == 'left':
-				motor_left(1, self.left_backward, speed)
-				motor_right(0, self.right_forward, int(speed*radius))
+				self.motor_left(1, self.left_backward, speed)
+				self.motor_right(0, self.right_forward, int(speed*radius))
 			else:
-				motor_left(1, self.left_backward, speed)
-				motor_right(1, self.right_backward, speed)
+				self.motor_left(1, self.left_backward, speed)
+				self.motor_right(1, self.right_backward, speed)
 		elif direction == 'no':
 			if turn == 'right':
-				motor_left(1, self.left_backward, speed)
-				motor_right(1, self.right_forward, speed)
+				self.motor_left(1, self.left_backward, speed)
+				self.motor_right(1, self.right_forward, speed)
 			elif turn == 'left':
-				motor_left(1, self.left_forward, speed)
-				motor_right(1, self.right_backward, speed)
+				self.motor_left(1, self.left_forward, speed)
+				self.motor_right(1, self.right_backward, speed)
 			else:
-				motorStop()
+				self.motorStop()
 		else:
 			pass
 
@@ -154,14 +153,14 @@ class Move:
 
 				if mc != None:
 					if mc.get_stop_working():
-						motorStop()
+						self.motorStop()
 						rgb.pink()
 						destroy()
 						in_q.task_done()
 						continue
 					
 					rgb.green()
-					move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())
+					self.move(mc.get_speed(), mc.get_direction(), mc.get_turn(), mc.get_radius())
 					in_q.task_done()
 
 				# Process the data..
@@ -171,19 +170,16 @@ class Move:
 			destroy()
 
 if __name__ == '__main__':
-	rgb = RGB()
-	rgb.setup()
-	rgb.yellow()
-	#RGB.police(4)
+	m : Move
 	try:
 		speed_set = 100
-		setup()
-		move(speed_set, 'forward', 'no', 0.8)
+		m = Move()
+		m.rgb.yellow()
+		m.move(speed_set, 'forward', 'no', 0.8)
 		time.sleep(1.3)
-		motorStop()
-		rgb.green()
-		destroy()
+		m.motorStop()
+		m.rgb.green()
+		del m
 		print("that is the end")
 	except KeyboardInterrupt:
-		destroy()
-
+		del m
