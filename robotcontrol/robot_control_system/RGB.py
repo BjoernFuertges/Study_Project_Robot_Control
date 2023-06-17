@@ -63,47 +63,47 @@ class RGB:
     def police(self, police_time):
         for i in range (1,police_time):
             for i in range (1,3):
-                side_on(self.left_R)
-                side_on(self.right_B)
+                self.side_on(self.left_R)
+                self.side_on(self.right_B)
                 time.sleep(0.1)
-                both_off()
-                side_on(self.left_B)
-                side_on(self.right_R)
+                self.both_off()
+                self.side_on(self.left_B)
+                self.side_on(self.right_R)
                 time.sleep(0.1)
-                both_off()
+                self.both_off()
             for i in range (1,5):
-                side_on(self.left_R)
-                side_on(self.right_B)
+                self.side_on(self.left_R)
+                self.side_on(self.right_B)
                 time.sleep(0.3)
-                both_off()
-                side_on(self.left_B)
-                side_on(self.right_R)
+                self.both_off()
+                self.side_on(self.left_B)
+                self.side_on(self.right_R)
                 time.sleep(0.3)
-                both_off()
+                self.both_off()
 
     def red(self):
-        side_on(self.right_R)
-        side_on(self.left_R)
+        self.side_on(self.right_R)
+        self.side_on(self.left_R)
 
     def green(self):
-        side_on(self.right_G)
-        side_on(self.left_G)
+        self.side_on(self.right_G)
+        self.side_on(self.left_G)
 
     def blue(self):
-        side_on(self.right_B)
-        side_on(self.left_B)
+        self.side_on(self.right_B)
+        self.side_on(self.left_B)
 
     def yellow(self):
-        red()
-        green()    
+        self.red()
+        self.green()    
 
     def pink(self):
-        red()
-        blue()
+        self.red()
+        self.blue()
 
     def cyan(self):
-        blue()
-        green()
+        self.blue()
+        self.green()
 
     def side_color_on(self, side_X,side_Y):
         GPIO.output(side_X, self.on)
@@ -115,20 +115,20 @@ class RGB:
 
     def turn_left(self, times):
         for i in range(0,times):
-            both_off()
-            side_on(self.left_G)
-            side_on(self.left_R)
+            self.both_off()
+            self.side_on(self.left_G)
+            self.side_on(self.left_R)
             time.sleep(0.5)
-            both_off()
+            self.both_off()
             time.sleep(0.5)
 
     def turn_right(self, times):
         for i in range(1,times):
-            both_off()
-            side_on(self.right_G)
-            side_on(self.right_R)
+            self.both_off()
+            self.side_on(self.right_G)
+            self.side_on(self.right_R)
             time.sleep(0.5)
-            both_off()
+            self.both_off()
             time.sleep(0.5)
 
 if __name__ == '__main__':
