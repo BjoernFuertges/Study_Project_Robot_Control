@@ -40,6 +40,10 @@ class status_manager:
             self.radius = radius
             self.passed_to_robot = False
 
+    def change_radius(self, radius : float) -> None:
+        self.radius += radius
+        self.passed_to_robot = False
+
     def set_stop(self, stop : bool) -> None:
         self.stop = stop
         self.passed_to_robot = False

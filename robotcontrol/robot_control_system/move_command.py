@@ -10,7 +10,7 @@ class Move_Command:
 		self.speed = 0
 		self.direction = 'forward'
 		self.turn = 'no'
-		self.radius = 0.8
+		self.radius = 0.0
 
 	def set_stop_working(self, stop_working : bool) -> None:
 		self.stop_working = stop_working

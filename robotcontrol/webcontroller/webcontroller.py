@@ -55,6 +55,37 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
         self.sm.set_turn(turn='right')
         return self.Sm_To_mir()
     
+    def MoveInformationDeliveryChangeLeftChange (self, request, context):
+        if self.sm.turn == "right":
+            if self.sm.radius <= 0.8:
+                self.sm.set_turn(turn='left')
+            else:
+                self.sm.change_radius(-0.8)
+        elif self.sm.turn == "left":
+            self.sm.change_radius(0.8)
+        else:
+            # turn = "no"
+            self.sm.set_turn(turn='left')
+            self.sm.change_radius(0.8)
+
+        return self.Sm_To_mir()
+    
+    def MoveInformationDeliveryChangeRightChange (self, request, context):
+        if self.sm.turn == "left":
+            if self.sm.radius <= 0.8:
+                self.sm.set_turn(turn='right')
+            else:
+                self.sm.change_radius(-0.8)
+        elif self.sm.turn == "right":
+            self.sm.change_radius(0.8)
+        else:
+            # turn = "no"
+            self.sm.set_turn(turn='right')
+            self.sm.change_radius(0.8)
+
+        
+        return self.Sm_To_mir()
+
     def MoveInformationDeliveryChangeCenter (self, request, context):
         self.sm.set_turn(turn='no')
         return self.Sm_To_mir()
