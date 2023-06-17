@@ -50,15 +50,19 @@ def start(name : str, wc_ip : str, wc_port : int) -> None:
     # Wait for all produced items to be consumed
     #working_queue.join()
 
-    #except KeyboardInterrupt:
-    doNotStop = True
-    while(doNotStop):
-        text = input()
+    try:
+        doNotStop = True
+        while(doNotStop):
+            text = input("exit?")
 
-        if text == "exit":
-            doNotStop = False
-    
-    stop_threads = True
-    t_mh.join()
-    t_ui.join()
-    print("Bye")
+            if text == "exit":
+                doNotStop = False
+                stop_threads = True
+                t_mh.join()
+                t_ui.join()
+                print("Bye")
+    except KeyboardInterrupt:
+        stop_threads = True
+        t_mh.join()
+        t_ui.join()
+        print("Bye")
