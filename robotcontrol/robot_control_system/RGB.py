@@ -11,17 +11,6 @@
 import RPi.GPIO as GPIO
 import time
 
-left_R = 22
-left_G = 23
-left_B = 24
-
-right_R = 10
-right_G = 9
-right_B = 25
-
-on  = GPIO.LOW
-off = GPIO.HIGH
-
 def both_on():
     GPIO.output(left_R, on)
     GPIO.output(left_G, on)
@@ -32,6 +21,28 @@ def both_on():
     GPIO.output(right_B, on)
 
 def setup():#initialization
+    global left_R
+    global left_G 
+    global left_B 
+    global right_R
+
+    global right_G
+    global right_B
+    
+    global on
+    global off
+
+    left_R = 22
+    left_G = 23
+    left_B = 24
+    
+    right_R = 10
+    right_G = 9
+    right_B = 25
+    
+    on  = GPIO.LOW
+    off = GPIO.HIGH
+
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(left_R, GPIO.OUT)
