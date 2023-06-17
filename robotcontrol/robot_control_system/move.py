@@ -62,6 +62,7 @@ class Move:
 
 	def __del__(self):
 		self.motorStop()
+		del rgb
 		GPIO.cleanup()             # Release resource
 
 	def motorStop(self) -> None:#Motor stops

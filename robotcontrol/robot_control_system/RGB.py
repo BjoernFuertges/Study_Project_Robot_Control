@@ -35,6 +35,10 @@ class RGB:
         GPIO.setup(self.right_B, GPIO.OUT)
         self.both_off()
 
+    def __del__(self):
+        self.both_off()
+        GPIO.cleanup()
+
     def both_on(self):
         GPIO.output(self.left_R, self.on)
         GPIO.output(self.left_G, self.on)
