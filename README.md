@@ -4,14 +4,19 @@ Architecture
 ```mermaid
 graph TD;
     F["<b>gRPC:</b><br>definition with protos"];
-    A[webcontroller]----> |"<b>gRPC:</b> <br> send information back"| B["website server"];
+    A[webcontroller];
+    B["website server"];
+    C["robot control system"]
+    D["website"];
+    E["machine learning"];
+    A----> |"<b>gRPC:</b> <br> send information back"| B;
     F -...-> |"<b>gRPC:</b> <br> implement methods"| A;
     B ----> |"<b>gRPC:</b> <br> call methods, <br> send commands"| A;
-    A ----> |"<b>gRPC:</b> <br> send new command"| C["robot control system"];
+    A ----> |"<b>gRPC:</b> <br> send new command"| C;
     C ----> |"<b>gRPC:</b> <br> request new command"| A;
-    B ----> |"<b>REST:</b> <br> send status information <br> (from webcontroller) <br> back"| D["website"];
+    B ----> |"<b>REST:</b> <br> send status information <br> (from webcontroller) <br> back"| D;
     D ----> |"<b>REST:</b> <br> send user input to website server <br> or <br> request status information"| B;
-    C <----> |"direct method calls"| E["machine learning"];
+    C <----> |"direct method calls"| E;
     B & C -...-> |"<b>gRPC:</b> <br> use methods"| F;
 ```
 
