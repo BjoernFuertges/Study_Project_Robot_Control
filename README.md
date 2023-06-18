@@ -3,10 +3,12 @@
 Architecture
 ```mermaid
 graph TD;
-    A[WC]<--> |gRPC| B[gui];
+    A[webcontroller]--> |gRPC: send information back| B[website server];
+    B --> |gRPC: call method, send commands| A;
     A <--> |gRPC| C[rcs];
-    B <--> |REST| D[website];
-    C <--> |direct method calls| E[ml];
+    B --> |REST: send request status information| D[website];
+    D --> |REST: send user input to website server or request status information| B;
+    C <--> |direct method calls| E[machine learning];
 ```
 
 ## Dependencies
