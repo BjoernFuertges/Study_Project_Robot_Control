@@ -3,15 +3,17 @@
 Architecture
 ```mermaid
 graph TD;
+    graph TD;
     F["<b>gRPC:</b><br>definition with protos"];
-    A[webcontroller]----> |"<b>gRPC:</b> <br>send information back"| B["website server"];
-    F -...-> |"<b>gRPC:</b><br>implement methods"| A;
-    B ----> |"<b>gRPC:</b> <br>call method, <br>send commands"| A;
-    A <----> |"<b>gRPC</b>"| C["robot control system"];
-    B ----> |"<b>REST:</b> <br>send request <br>(for status information)"| D["website"];
-    D ----> |"<b>REST:</b> <br>send user input to website server<br> or<br>request status information"| B;
+    A[webcontroller]----> |"<b>gRPC:</b> <br> send information back"| B["website server"];
+    F -...-> |"<b>gRPC:</b> <br> implement methods"| A;
+    B ----> |"<b>gRPC:</b> <br> call methods, <br> send commands"| A;
+    A ----> |"<b>gRPC:</b> <br> send new command"| C["robot control system"];
+    C ----> |"<b>gRPC:</b> <br> request new command"| A;
+    B ----> |"<b>REST:</b> <br> send status information <br> (from webcontroller) <br> back"| D["website"];
+    D ----> |"<b>REST:</b> <br> send user input to website server <br> or <br> request status information"| B;
     C <----> |"direct method calls"| E["machine learning"];
-    B & C -...-> |"<b>gRPC:</b> <br>use methods"| F;
+    B & C -...-> |"<b>gRPC:</b> <br> use methods"| F;
 ```
 
 ## Dependencies
