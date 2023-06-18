@@ -47,6 +47,14 @@ python -m grpc_tools.protoc -I./protos --python_out=./protos_generated --pyi_out
 ```
 **Insert per hand `protos_generated.` in webcontroller_pb2_grpc.py in the import line (`import webcontroller_pb2 as webcontroller__pb2`)!** If you don't do it, the programm will not run because of an `ModuleNotFoundError`.
 
+## Necessary Information
+### JINJA
+
+To get access to HTML elements with Python its necessary to use Jinja or JavaScript
+n
+https://jinja.palletsprojects.com/en/3.1.x/
+
+
 ## Problems and how to solve them
 ### "no wireless interfaces found"
 1. Check, if wifi is blocked

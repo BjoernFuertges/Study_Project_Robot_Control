@@ -118,7 +118,7 @@ def stop():
 @app.route("/displayStatus/", methods=['POST'])
 def returnStatus() :
     with grpc.insecure_channel('localhost:50051') as channel:
-        stub = webcontroller_pb2_grpc.Agent(channel)
+        stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationGetLastSended(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         status = [str(response.speed), str(response.speed), response.direction, response.turn, response.turn, response.radius, response.stop]
     return render_template('index.html', entries=status)
