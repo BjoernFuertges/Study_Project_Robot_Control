@@ -5,16 +5,26 @@
 <div class="textkeys">
   <h2>Arrow Keys to control the robtot</h2>
   <li>
+    <item> Start - Booting the Robot</item> <br />
     <item> Front - accelerate</item> <br />
+    <item> Stop - Shutting down the Robot</item> <br />
     <item> Back - brake</item><br />
     <item> Left - turn wheels left</item><br />
     <item> Right - turn wheels right</item><br />
   </li>
 </div>
 <div class="keys" style="display: flex; flex-direction: column;">
+  <div style="display:flex; flex-direction: row; justify-content: center;">
+  <form action="/start/" method="post" target = "dummyframe">
+    <button class="start" type="submit"><i class="fa fa-play"></i></button>
+  </form>
   <form action="/forward/" method="post" target = "dummyframe">
     <button class="up arr" type="submit"><i class="fa fa-arrow-up"></i></button>
   </form>
+  <form action="/stop/" method="post" target = "dummyframe">
+    <button class="stop" type="submit"><i class="fa fa-pause"></i></button>
+  </form>
+ </div>
   <div style="display:flex; flex-direction: row; justify-content: center;">
     <form action="/leftturn/" method="post" target = "dummyframe">
       <button class="left arr"><i class="fa fa-arrow-left"></i></button>
@@ -25,6 +35,14 @@
     <form action="/rightturn/" method="post" target = "dummyframe">
       <button class="right arr"><i class="fa fa-arrow-right"></i></button>
     </form>
+  </div>
+  <div style="display:flex; flex-direction: column; justify-content: center;">
+    <form action="/displayStatus/" method="post" target = "dummyframe">
+      <button class="data"><i class="fa-light fa-database"></i></button>
+    </form>
+     {% for entry in entries %} 
+       {{entry}}
+     {% endfor %}
   </div>
 
 </div>
@@ -43,5 +61,5 @@
 
 <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/df17f4ba7e.js" crossorigin="anonymous"></script>
 {% endblock %}

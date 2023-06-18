@@ -13,18 +13,61 @@ class status_manager:
         self.speed = 100
         self.direction = 'forward'
         self.turn = 'no'
-        self.radius = 0.8
+        self.radius = 0.0
         self.passed_to_robot = False
+
+    def set_turn(self, turn : str, setPTR : bool = False) -> None:
+        if turn == 'left' or turn == 'right' or turn == 'no':
+            self.turn = turn
+            self.passed_to_robot = False
+
+    def set_turn_radius(self, turn : str, radius : float) -> None:
+        self.set_turn(turn)
+        self.set_radius(radius)
+        self.passed_to_robot = False
+    
 
     def set_turn_speed_radius(self, turn : str, speed : int, radius : float) -> None:
         if turn == 'left' or turn == 'right' or turn == 'no':
             self.turn = turn
             self.speed = speed
-            self.radius = radius
+            self.set_radius(radius)
+            self.passed_to_robot = False
+
+    def set_direction(self, direction : str) -> None:
+        if direction == 'forward' or direction == 'backward' or direction == 'no':
+            self.direction = direction
+            self.passed_to_robot = False
 
     def set_direction_speed_radius(self, direction : str, speed : int, radius : float) -> None:
         if direction == 'forward' or direction == 'backward' or direction == 'no':
             self.direction = direction
             self.speed = speed
+            self.set_radius(radius)
+            self.passed_to_robot = False
+
+    def change_radius(self, radius : float) -> None:
+        radiusTmp = self.radius + radius
+        if radiusTmp >= 0.9:
+            self.radius = 1
+        elif radiusTmp <= 0.1:
+            self.radius = 0
+        else:
+            self.radius = radiusTmp
+        self.passed_to_robot = False
+
+    def set_radius(self, radius : float, setPTR : bool = False) -> None:
+        if radius >= 1:
+            self.radius = 1
+        elif radius <= 0:
+            self.radius = 0
+        else:
             self.radius = radius
+
+        if setPTR:
+            self.passed_to_robot = False
+
+    def set_stop(self, stop : bool) -> None:
+        self.stop = stop
+        self.passed_to_robot = False
     

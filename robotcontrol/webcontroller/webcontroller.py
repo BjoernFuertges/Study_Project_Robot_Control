@@ -10,6 +10,8 @@ from protos_generated import webcontroller_pb2_grpc
 from webcontroller import status_management
 
 class Agent(webcontroller_pb2_grpc.AgentServicer):
+    radiusChangeFactor = 0.2
+
     sm = status_management.status_manager("IRobot")
 
     def MoveInformation(self, request, context):
@@ -17,6 +19,15 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
     
     def MoveInformationGetLastSended(self, request, context):
         return self.Sm_To_mirws()
+    
+    def MoveInformationGetNew(self, request, context):
+        self.sm.passed_to_robot = True
+        return self.Sm_To_mir()
+    
+    def MoveInformationHasNew(self, request, context):
+        return webcontroller_pb2.MoveInformationHasNewReply(
+            hasNew=(self.sm.passed_to_robot == False)
+        )
 
     def MoveInformationDeliveryLeft (self, request, context):
         self.sm.set_turn_speed_radius('left', request.speed, request.radius)
@@ -39,27 +50,61 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryChangeLeft (self, request, context):
-        self.sm.turn = 'left'
+        self.sm.set_turn(turn='left')
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryChangeRight (self, request, context):
-        self.sm.turn = 'right'
+        self.sm.set_turn(turn='right')
         return self.Sm_To_mir()
     
+    def MoveInformationDeliveryChangeLeftChange (self, request, context):
+        if self.sm.turn == "right":
+            if self.sm.radius <= self.radiusChangeFactor:
+                self.sm.set_turn_radius(turn='left', radius=0.0)
+            else:
+                self.sm.change_radius(-self.radiusChangeFactor)
+        elif self.sm.turn == "left":
+            self.sm.change_radius(self.radiusChangeFactor)
+        else:
+            # turn = "no"
+            self.sm.set_turn(turn='left')
+            self.sm.change_radius(self.radiusChangeFactor)
+
+        return self.Sm_To_mir()
+    
+    def MoveInformationDeliveryChangeRightChange (self, request, context):
+        if self.sm.turn == "left":
+            if self.sm.radius <= self.radiusChangeFactor:
+                self.sm.set_turn_radius(turn='right', radius=0)
+            else:
+                self.sm.change_radius(-self.radiusChangeFactor)
+        elif self.sm.turn == "right":
+            self.sm.change_radius(self.radiusChangeFactor)
+        else:
+            # turn = "no"
+            self.sm.set_turn(turn='right')
+            self.sm.change_radius(self.radiusChangeFactor)
+
+        
+        return self.Sm_To_mir()
+
     def MoveInformationDeliveryChangeCenter (self, request, context):
-        self.sm.turn = 'no'
+        self.sm.set_turn(turn='no')
         return self.Sm_To_mir()
 
     def MoveInformationDeliveryChangeForward (self, request, context):
-        self.sm.direction = 'forward'
+        logging.debug("Called MoveInformationDeliveryChangeForward")
+        print("Called MoveInformationDeliveryChangeForward")
+        self.sm.set_direction(direction='forward')
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryChangeBackward (self, request, context):
-        self.sm.direction = 'backward'
+        self.sm.set_direction(direction='backward')
         return self.Sm_To_mir()
     
     def MoveInformationDeliveryStop (self, request, context):
-        self.sm.stop = request.stop
+        self.sm.set_stop(stop=request.stop)
+        print("MoveInformationDeliveryStop")
         return self.Sm_To_mir()
     
     def Sm_To_mir(self) -> webcontroller_pb2.MoveInformationReply:

@@ -11,12 +11,15 @@ service Agent {
   rpc MoveInformationDeliveryBackward (MoveInformationSendBackward) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeLeft (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeRight (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryChangeLeftChange (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationDeliveryChangeRightChange (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeCenter (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeForward (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryChangeBackward (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationDeliveryStop (MoveInformationSendStop) returns (MoveInformationReply) {}
   rpc MoveInformationGetLastSended (MoveInformationRequest) returns (MoveInformationReplyWithStatus) {}
-
+  rpc MoveInformationGetNew (MoveInformationRequest) returns (MoveInformationReply) {}
+  rpc MoveInformationHasNew (MoveInformationRequest) returns (MoveInformationHasNewReply) {}
 }
 
 // The request message containing the user's name.
@@ -42,6 +45,10 @@ message MoveInformationReplyWithStatus {
   string turn = 5;
   double radius = 6;
   bool passedToRobot = 7;
+}
+
+message MoveInformationHasNewReply {
+  bool hasNew = 1;
 }
 
 message MoveInformationSendLeft {

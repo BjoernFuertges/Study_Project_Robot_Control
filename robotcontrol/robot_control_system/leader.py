@@ -1,42 +1,59 @@
 from queue import Queue
 from threading import Thread
-import move
-from move import Move_Command
+import robot_control_system.move as move
+import robot_control_system.camera as camera
+from robot_control_system.move_command import Move_Command
+
+import grpc
+from protos_generated import webcontroller_pb2
+from protos_generated import webcontroller_pb2_grpc
 
 # A thread that produces data
-def ui(out_q):
-    while True:
-        print("Input values  [i] or exit [e]")
-        user_choice = input()
-        if user_choice == 'i':
-            # new input values
-            mc = Move_Command()
+def ui(out_q, robot_name : str, wc_ip : str, wc_port : int, stop):
+    while(stop() != True):
+        with grpc.insecure_channel(wc_ip + ":" + str(wc_port)) as channel:
+            stub = webcontroller_pb2_grpc.AgentStub(channel)
+            response = stub.MoveInformationHasNew(webcontroller_pb2.MoveInformationRequest(name=robot_name))
             
-            print("Please enter the values")
-            print("Speed:")
-            mc.set_speed(int(input()))
-            print("direction:")
-            mc.set_direction(input())
-            print("turn:")
-            mc.set_turn(input())
-            print("radius:")
-            mc.set_radius(float(input()))
-            out_q.put(mc)
-            
-        elif user_choice == 'e':
-            print("bye")
-            mc = Move_Command()
-            mc.set_stop_working(True)
-            out_q.put(mc)
-            break
-        # else: do nothing
+
+            if response.hasNew == True:
+                print(response.hasNew)
+                
+                response = stub.MoveInformationGetNew(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+                
+                mc = Move_Command()
+                mc.set_direction(response.direction)
+                mc.set_radius(response.radius)
+                mc.set_speed(response.speed)
+                mc.set_stop_working(response.stop)
+                mc.set_turn(response.turn)
+
+                print(mc.to_string())
+
+                out_q.put(mc)
+
+                if mc.get_stop_working():
+                    print("Stop!")
+                    continue
           
-# Create the shared queue and launch both threads
-working_queue = Queue()
-t_mh = Thread(target = move.move_handler, args =(working_queue, ))
-t_ui = Thread(target = ui, args =(working_queue, ))
-t_mh.start()
-t_ui.start()
-  
-# Wait for all produced items to be consumed
-working_queue.join()
+def start(name : str, wc_ip : str, wc_port : int) -> None:
+    
+    # Create the shared queue and launch both threads
+    working_queue = Queue()
+    m = move.Move()
+    stop_threads = False
+    t_mh = Thread(target = m.move_handler, args =(working_queue, lambda: stop_threads))
+    t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port, lambda: stop_threads))
+    c = camera.BaseCamera()
+
+    t_mh.start()
+    t_ui.start()
+
+    try:
+        # Wait for all produced items to be consumed
+        working_queue.join()
+    except KeyboardInterrupt:
+        stop_threads = True
+        t_mh.join()
+        t_ui.join()
+        print("Bye")

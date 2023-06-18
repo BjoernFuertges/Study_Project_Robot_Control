@@ -55,6 +55,16 @@ class AgentStub(object):
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
                 response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
                 )
+        self.MoveInformationDeliveryChangeLeftChange = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryChangeLeftChange',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
+                )
+        self.MoveInformationDeliveryChangeRightChange = channel.unary_unary(
+                '/Agent/MoveInformationDeliveryChangeRightChange',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
+                )
         self.MoveInformationDeliveryChangeCenter = channel.unary_unary(
                 '/Agent/MoveInformationDeliveryChangeCenter',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
@@ -79,6 +89,16 @@ class AgentStub(object):
                 '/Agent/MoveInformationGetLastSended',
                 request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
                 response_deserializer=webcontroller__pb2.MoveInformationReplyWithStatus.FromString,
+                )
+        self.MoveInformationGetNew = channel.unary_unary(
+                '/Agent/MoveInformationGetNew',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationReply.FromString,
+                )
+        self.MoveInformationHasNew = channel.unary_unary(
+                '/Agent/MoveInformationHasNew',
+                request_serializer=webcontroller__pb2.MoveInformationRequest.SerializeToString,
+                response_deserializer=webcontroller__pb2.MoveInformationHasNewReply.FromString,
                 )
 
 
@@ -135,6 +155,18 @@ class AgentServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def MoveInformationDeliveryChangeLeftChange(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveInformationDeliveryChangeRightChange(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def MoveInformationDeliveryChangeCenter(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -160,6 +192,18 @@ class AgentServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def MoveInformationGetLastSended(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveInformationGetNew(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MoveInformationHasNew(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -208,6 +252,16 @@ def add_AgentServicer_to_server(servicer, server):
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
                     response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
             ),
+            'MoveInformationDeliveryChangeLeftChange': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryChangeLeftChange,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
+            ),
+            'MoveInformationDeliveryChangeRightChange': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationDeliveryChangeRightChange,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
+            ),
             'MoveInformationDeliveryChangeCenter': grpc.unary_unary_rpc_method_handler(
                     servicer.MoveInformationDeliveryChangeCenter,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
@@ -232,6 +286,16 @@ def add_AgentServicer_to_server(servicer, server):
                     servicer.MoveInformationGetLastSended,
                     request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
                     response_serializer=webcontroller__pb2.MoveInformationReplyWithStatus.SerializeToString,
+            ),
+            'MoveInformationGetNew': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationGetNew,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationReply.SerializeToString,
+            ),
+            'MoveInformationHasNew': grpc.unary_unary_rpc_method_handler(
+                    servicer.MoveInformationHasNew,
+                    request_deserializer=webcontroller__pb2.MoveInformationRequest.FromString,
+                    response_serializer=webcontroller__pb2.MoveInformationHasNewReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -381,6 +445,40 @@ class Agent(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def MoveInformationDeliveryChangeLeftChange(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeLeftChange',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
+            webcontroller__pb2.MoveInformationReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationDeliveryChangeRightChange(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationDeliveryChangeRightChange',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
+            webcontroller__pb2.MoveInformationReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def MoveInformationDeliveryChangeCenter(request,
             target,
             options=(),
@@ -462,5 +560,39 @@ class Agent(object):
         return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationGetLastSended',
             webcontroller__pb2.MoveInformationRequest.SerializeToString,
             webcontroller__pb2.MoveInformationReplyWithStatus.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationGetNew(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationGetNew',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
+            webcontroller__pb2.MoveInformationReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MoveInformationHasNew(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Agent/MoveInformationHasNew',
+            webcontroller__pb2.MoveInformationRequest.SerializeToString,
+            webcontroller__pb2.MoveInformationHasNewReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
