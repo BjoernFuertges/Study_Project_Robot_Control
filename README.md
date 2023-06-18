@@ -9,7 +9,7 @@ graph TD;
     C["robot control system"]
     D["website"];
     E["machine learning"];
-    click B href "robotcontrol/website/Readme.md" "Website"
+    click B href "robotcontrol/website/Readme.md" "Website" _blank
     A----> |"<b>gRPC:</b> <br> send information back"| B;
     F -...-> |"<b>gRPC:</b> <br> implement methods"| A;
     B ----> |"<b>gRPC:</b> <br> call methods, <br> send commands"| A;
