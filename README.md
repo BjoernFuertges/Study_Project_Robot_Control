@@ -3,11 +3,11 @@
 Architecture
 ```mermaid
 graph TD;
-    A[webcontroller]--> |"**gRPC:** <br>send information back"| B["website server"];
-    B --> |"**gRPC:** <br>call method, <br>send commands"| A;
-    A <--> |"**gRPC**"| C["robot control system"];
-    B --> |"**REST:** send request <br>(for status information)"| D["website"];
-    D --> |"**REST:** send user input to website server<br> or<br>request status information"| B;
+    A[webcontroller]--> |"<b>gRPC:</b> <br>send information back"| B["website server"];
+    B --> |"<b>gRPC:</b> <br>call method, <br>send commands"| A;
+    A <--> |"<b>gRPC</b>"| C["robot control system"];
+    B --> |"<b>REST:</b> <br>send request <br>(for status information)"| D["website"];
+    D --> |"<b>REST:</b> <br>send user input to website server<br> or<br>request status information"| B;
     C <--> |"direct method calls"| E["machine learning"];
 ```
 
