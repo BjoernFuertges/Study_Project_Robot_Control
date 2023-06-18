@@ -54,6 +54,26 @@ To get access to HTML elements with Python its necessary to use Jinja or JavaScr
 n
 https://jinja.palletsprojects.com/en/3.1.x/
 
+
+## Problems and how to solve them
+### "no wireless interfaces found"
+1. Check, if wifi is blocked
+    ```bash
+    rfkill list all
+    ```
+2. Check, what is your wifi country
+    ```bash
+    sudo iw reg get
+    ```
+    You can set your wifi country with this tool:
+    ```bash
+    sudo raspi-config
+    ```
+3. Check the syntax of your `wpa_supplicant.conf`:
+    ```bash
+    sudo wpa_supplicant -iwlan0 -c/etc/wpa_supplicant/wpa_supplicant.conf
+    ```
+
 ## TODO
 ### TODO Website:
 0. Complete interface for Robot Controls

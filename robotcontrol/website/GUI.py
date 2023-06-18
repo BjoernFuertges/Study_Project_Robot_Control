@@ -54,7 +54,7 @@ def turn_left():
     left_message = "Turning Left..."
     with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
-        response = stub.MoveInformationDeliveryChangeLeft(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        response = stub.MoveInformationDeliveryChangeLeftChange(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         print(
             response.name + ", " + 
             str(response.stop) + ", " + 
@@ -70,7 +70,7 @@ def turn_right():
     right_message = "Turning Right..."
     with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
-        response = stub.MoveInformationDeliveryChangeRight(webcontroller_pb2.MoveInformationRequest(name=robot_name))
+        response = stub.MoveInformationDeliveryChangeRightChange(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         print(
             response.name + ", " + 
             str(response.stop) + ", " + 
@@ -123,7 +123,7 @@ def returnStatus() :
         status = [str(response.speed), str(response.speed), response.direction, response.turn, response.turn, response.radius, response.stop]
     return render_template('index.html', entries=status)
 
-def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool) -> None:
+def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool, gui_ip : str, gui_port : int) -> None:
     global robot_name
     global wc_server_ip
     global wc_server_port
@@ -131,7 +131,7 @@ def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool) -> None:
     wc_server_ip = wc_ip
     wc_server_port = wc_port
 
-    app.run(debug=debug_modus)
+    app.run(debug=debug_modus, host=gui_ip, port=gui_port)
   
 if __name__ == "__main__":
     app.run(debug=True)
