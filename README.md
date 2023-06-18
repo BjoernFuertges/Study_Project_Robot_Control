@@ -6,7 +6,7 @@ graph TD;
     A[WC]<--> |gRPC| B[gui];
     A <--> |gRPC| C[rcs];
     B <--> |REST| D[website];
-    C <--> |direct method calls| D[ml];
+    C <--> |direct method calls| E[ml];
 ```
 
 ## Dependencies
