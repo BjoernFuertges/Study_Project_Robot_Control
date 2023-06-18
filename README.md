@@ -3,14 +3,15 @@
 Architecture
 ```mermaid
 graph TD;
+    F["<b>gRPC:</b><br>definition with protos"];
     A[webcontroller]----> |"<b>gRPC:</b> <br>send information back"| B["website server"];
+    A -....-> |"<b>gRPC:</b><br>implement methods|
     B ----> |"<b>gRPC:</b> <br>call method, <br>send commands"| A;
     A <----> |"<b>gRPC</b>"| C["robot control system"];
     B ----> |"<b>REST:</b> <br>send request <br>(for status information)"| D["website"];
     D ----> |"<b>REST:</b> <br>send user input to website server<br> or<br>request status information"| B;
     C <----> |"direct method calls"| E["machine learning"];
-    F["<b>gRPC:</b><br>definition with protos"];
-    A & B & C -...- F
+    B & C -...- |"<b>gRPC:</b> <br>use methods" F
 ```
 
 ## Dependencies
