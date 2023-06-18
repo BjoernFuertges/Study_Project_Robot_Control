@@ -1,4 +1,13 @@
 # Studienprojekt1_Robotersteuerung
+## 	Architecture
+Architecture
+```mermaid
+graph TD;
+    A[WC]<--> [gRPC] B[gui];
+    A <--> [gRPC] C[rcs];
+    B <--> [REST] D[website];
+    C <--> [direct method calls] D[ml];
+```
 
 ## Dependencies
 ### Webserver
