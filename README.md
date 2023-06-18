@@ -1,7 +1,9 @@
 # Studienprojekt1_Robotersteuerung
 ## 	Architecture
-Architecture
 ```mermaid
+---
+title: Software architecture of robotcontrol
+---
 graph TD;
     F["<b>gRPC:</b><br>definition with protos"];
     A[webcontroller];
