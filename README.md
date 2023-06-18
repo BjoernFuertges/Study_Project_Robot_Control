@@ -3,7 +3,6 @@
 Architecture
 ```mermaid
 graph TD;
-    graph TD;
     F["<b>gRPC:</b><br>definition with protos"];
     A[webcontroller]----> |"<b>gRPC:</b> <br> send information back"| B["website server"];
     F -...-> |"<b>gRPC:</b> <br> implement methods"| A;
