@@ -11,7 +11,7 @@ graph TD;
     B ----> |"<b>REST:</b> <br>send request <br>(for status information)"| D["website"];
     D ----> |"<b>REST:</b> <br>send user input to website server<br> or<br>request status information"| B;
     C <----> |"direct method calls"| E["machine learning"];
-    B & C -...- |"<b>gRPC:</b> <br>use methods" F
+    
 ```
 
 ## Dependencies
