@@ -162,7 +162,7 @@ class Move:
 
 	# picture_intervall in ms
 	def move_handler(self, in_q, stop, picture_intervall : int) -> None:
-		ts_last_picture = 0
+		ts_last_picture = sys.maxint - picture_intervall
 		while stop() != True:
 			ts_now = time.time()
 			print(ts_last_picture)
