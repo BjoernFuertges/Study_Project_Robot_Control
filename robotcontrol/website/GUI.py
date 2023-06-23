@@ -84,7 +84,7 @@ def turn_right():
 def start():
     #Moving forward code
     right_message = "Starting Up..."
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         # TODO: Pls add Start Method for Robot
         response = stub.MoveInformationDeliveryStop(webcontroller_pb2.MoveInformationSendStop(name=robot_name, stop=False))
@@ -102,7 +102,7 @@ def start():
 def stop():
     #Moving forward code
     right_message = "Stopping Actions..."
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryStop(webcontroller_pb2.MoveInformationSendStop(name=robot_name, stop=True))
         print(
@@ -117,11 +117,13 @@ def stop():
 
 @app.route("/displayStatus/", methods=['POST'])
 def returnStatus() :
-    with grpc.insecure_channel('localhost:50051') as channel:
+    print("Hi, what is the status???")
+    with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationGetLastSended(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         status = [str(response.speed), str(response.speed), response.direction, response.turn, response.turn, response.radius, response.stop]
-    return render_template('index.html', entries=status)
+    print(status)
+    return render_template('index.html', entries=status, myGreatValue='hi')
 
 def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool, gui_ip : str, gui_port : int) -> None:
     global robot_name
