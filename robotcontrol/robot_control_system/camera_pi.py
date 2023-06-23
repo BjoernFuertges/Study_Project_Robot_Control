@@ -1,15 +1,17 @@
 import time
 from picamera2 import Picamera2, Preview
 
-picam = Picamera2()
 
-config = picam.create_preview_configuration()
-picam.configure(config)
+def run():
+    picam = Picamera2()
 
-picam.start_preview(Preview.QTGL)
+    config = picam.create_preview_configuration()
+    picam.configure(config)
 
-picam.start()
-time.sleep(2)
-picam.capture_file("test-python.jpg")
+    picam.start_preview(Preview.QTGL)
 
-picam.close()
+    picam.start()
+    time.sleep(2)
+    picam.capture_file("test-python.jpg")
+
+    picam.close()
