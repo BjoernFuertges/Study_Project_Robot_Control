@@ -164,10 +164,10 @@ class Move:
 	def move_handler(self, in_q, stop, picture_intervall : int) -> None:
 		ts_last_picture = 0
 		while stop() != True:
-			ts_now = int(time.time())
+			ts_now = time.time()
 			print(ts_last_picture)
 			print(ts_now)
-			if ts_last_picture + picture_intervall >= ts_now:
+			if (ts_last_picture + picture_intervall) >= ts_now:
 				print("Take picture!")
 				ts_last_picture = ts_now
 				camera.take_picture(self.tmp_img_folder + "/" + str(ts_now) + ".jpg")
