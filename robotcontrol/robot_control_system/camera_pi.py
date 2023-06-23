@@ -1,11 +1,10 @@
 import time
-from picamera2 import Picamera2, Preview
+from picamera2 import Picamera2
 
 
 def run():
     picam = Picamera2()
 
-    config = picam.create_preview_configuration()
     picam.configure(config)
 
     picam.start()
