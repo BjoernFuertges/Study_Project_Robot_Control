@@ -11,7 +11,7 @@ class Camera:
         picam.configure(capture_config)
 
     def take_picture(self, image_name : str):
-        picam.start()
-        picam.capture_file(image_name)
+        self.picam.start()
+        self.picam.capture_file(image_name)
 
-        picam.close()
+        self.picam.close()
