@@ -157,7 +157,7 @@ class Move:
 			ts_now = time.time()
 			if ts_last_picture + picture_intervall >= ts_now:
 				ts_last_picture = ts_now
-    			camera.take_picture("take-picture.jpg")
+				camera.take_picture("take-picture.jpg")
 
 			# Get some data
 			mc = in_q.get()
