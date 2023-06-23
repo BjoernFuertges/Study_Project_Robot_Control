@@ -15,3 +15,4 @@ def run():
     picam.capture_file("test-python.jpg")
 
     picam.close()
+    print("image saved")
