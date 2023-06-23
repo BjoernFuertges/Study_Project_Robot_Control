@@ -1,7 +1,7 @@
 from queue import Queue
 from threading import Thread
 import robot_control_system.move as move
-import robot_control_system.camera.Camera as Camera
+from robot_control_system.camera import Camera
 from robot_control_system.move_command import Move_Command
 
 import grpc
