@@ -5,6 +5,7 @@
 # Website     : www.gewbot.com
 # Author      : William
 # Date        : 2019/07/24
+import os
 import time
 import RPi.GPIO as GPIO
 import robot_control_system.RGB as RGB
@@ -38,8 +39,16 @@ class Move:
 
 	rgb : RGB.RGB
 	camera : Camera
+	tmp_img_folder : str
 
-	def __init__(self):#Motor initialization
+	def __init__(self, tmp_img_folder : str):#Motor initialization
+		self.tmp_img_folder = tmp_img_folder
+		if os.path.isdir(self.tmp_img_folder):
+			shutil.rmtree(self.tmp_img_folder)
+
+		os.mkdir(self.tmp_img_folder)
+
+
 		self.camera = Camera()
 		
 		self.rgb = RGB.RGB()
@@ -157,7 +166,7 @@ class Move:
 			ts_now = time.time()
 			if ts_last_picture + picture_intervall >= ts_now:
 				ts_last_picture = ts_now
-				camera.take_picture("take-picture.jpg")
+				camera.take_picture(self.tmp_img_folder + "/" + str(ts_now) + ".jpg")
 
 			# Get some data
 			mc = in_q.get()
