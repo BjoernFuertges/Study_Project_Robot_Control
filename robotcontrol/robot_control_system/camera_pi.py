@@ -8,8 +8,6 @@ def run():
     config = picam.create_preview_configuration()
     picam.configure(config)
 
-    picam.start_preview(Preview.QTGL)
-
     picam.start()
     time.sleep(2)
     picam.capture_file("test-python.jpg")
