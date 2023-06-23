@@ -172,7 +172,7 @@ class Move:
 			if (ts_last_picture + picture_intervall) >= ts_now:
 				print("Take picture!")
 				ts_last_picture = ts_now
-				camera.take_picture(self.tmp_img_folder + "/" + str(ts_now) + ".jpg")
+				self.camera.take_picture(self.tmp_img_folder + "/" + str(ts_now) + ".jpg")
 
 			# Get some data
 			mc = in_q.get()
