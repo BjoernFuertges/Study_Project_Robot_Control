@@ -9,6 +9,7 @@ import time
 import RPi.GPIO as GPIO
 import robot_control_system.RGB as RGB
 from robot_control_system.move_command import Move_Command
+from robot_control_system.camera import Camera
 
 class Move:
 
@@ -36,8 +37,11 @@ class Move:
 	pwm_B = 0
 
 	rgb : RGB.RGB
+	camera : Camera
 
 	def __init__(self):#Motor initialization
+		self.camera = Camera()
+		
 		self.rgb = RGB.RGB()
 		
 		self.rgb.red()
@@ -146,8 +150,15 @@ class Move:
 		else:
 			pass
 
-	def move_handler(self, in_q, stop) -> None:
+	# picture_intervall in ms
+	def move_handler(self, in_q, stop, picture_intervall : int) -> None:
+		ts_last_picture = 0
 		while stop() != True:
+			ts_now = time.time()
+			if ts_last_picture + picture_intervall >= ts_now:
+				ts_last_picture = ts_now
+    			camera.take_picture("take-picture.jpg")
+
 			# Get some data
 			mc = in_q.get()
 
