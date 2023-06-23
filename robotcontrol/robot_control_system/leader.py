@@ -35,13 +35,13 @@ def ui(out_q, robot_name : str, wc_ip : str, wc_port : int, stop):
                     print("Stop!")
                     continue
           
-def start(name : str, wc_ip : str, wc_port : int) -> None:
+def start(name : str, wc_ip : str, wc_port : int, picture_intervall : int) -> None:
     
     # Create the shared queue and launch both threads
     working_queue = Queue()
     m = move.Move()
     stop_threads = False
-    t_mh = Thread(target = m.move_handler, args =(working_queue, lambda: stop_threads))
+    t_mh = Thread(target = m.move_handler, args =(working_queue, lambda: stop_threads, picture_intervall))
     t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port, lambda: stop_threads))
 
     t_mh.start()
