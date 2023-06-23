@@ -164,7 +164,7 @@ class Move:
 	def move_handler(self, in_q, stop, picture_intervall : int) -> None:
 		ts_last_picture = 0
 		while stop() != True:
-			ts_now = time.time()
+			ts_now = int(time.time())
 			print(ts_last_picture)
 			print(ts_now)
 			if ts_last_picture + picture_intervall >= ts_now:
