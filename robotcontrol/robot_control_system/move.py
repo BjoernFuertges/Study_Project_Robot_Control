@@ -7,6 +7,7 @@
 # Date        : 2019/07/24
 import os
 import time
+import shutil
 import RPi.GPIO as GPIO
 import robot_control_system.RGB as RGB
 from robot_control_system.move_command import Move_Command
