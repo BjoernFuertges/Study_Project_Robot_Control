@@ -1,6 +1,12 @@
 # Studienprojekt1_Robotersteuerung
 
 ## Dependencies
+### Machine Learning
+``` bash
+pip install opencv-contrib-python
+pip install caer
+```
+
 ### Webserver
 * Flask:
     ```bash
