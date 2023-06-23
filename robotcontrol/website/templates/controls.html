@@ -42,9 +42,10 @@
     </form>
     
     <div class="container">
-     {% for entry in entries %} 
-       {{entry}}
-     {% endfor %}
+      {{ myGreatValue }}
+      {% for entry in entries %} 
+        {{ entry }}
+      {% endfor %}
   </div>
 </div>
 
