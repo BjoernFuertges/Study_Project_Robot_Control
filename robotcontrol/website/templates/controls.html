@@ -40,23 +40,14 @@
     <form action="/displayStatus/" method="post" target = "dummyframe">
       <button class="data"><i class="fa-light fa-database"></i></button>
     </form>
+    
+    <div class="container">
      {% for entry in entries %} 
        {{entry}}
      {% endfor %}
   </div>
-
 </div>
-<br />
-<br />
-<br />
-<br />
-<div class="names">
-  <div class="uptext"></div>
-  <div class="downtext"></div>
-  <div class="lefttext"></div>
-  <div class="righttext"></div>
-  <div class="b"></div>
-  <div class="a"></div>
+
 </div>
 
 <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
