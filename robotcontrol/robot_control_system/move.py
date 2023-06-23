@@ -166,6 +166,8 @@ class Move:
 		while stop() != True:
 			ts_now = time.time()
 			print(ts_last_picture)
+			print(picture_intervall)
+			print(ts_last_picture + picture_intervall)
 			print(ts_now)
 			if (ts_last_picture + picture_intervall) >= ts_now:
 				print("Take picture!")
