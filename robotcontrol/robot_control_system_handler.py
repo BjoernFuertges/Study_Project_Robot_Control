@@ -11,7 +11,9 @@ if __name__ == '__main__':
                     help='Port number of the webcontroller (default: 50051)')
     parser.add_argument('--picture_intervall', type=int, default=100,
                     help='Intervall [in ms] in that pictures should taken (take every x ms a picture) (default: 100)')
+    parser.add_argument('--tmp_img_folder', type=str, default='tmp_img',
+                    help='Directory in that the images should be temporary stored (default: tmp_img)')
 
     args = parser.parse_args()
 
-    rcsl.start(name=args.name, wc_ip=args.wc_ip, wc_port=args.wc_port, picture_intervall=args.picture_intervall)
+    rcsl.start(name=args.name, wc_ip=args.wc_ip, wc_port=args.wc_port, picture_intervall=args.picture_intervall, tmp_img_folder=args.tmp_img_folder)
