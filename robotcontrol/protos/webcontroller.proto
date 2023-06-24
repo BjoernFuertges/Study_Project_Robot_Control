@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
+
 // The greeting service definition.
 service Agent {
   // Sends a greeting
@@ -20,6 +22,11 @@ service Agent {
   rpc MoveInformationGetLastSended (MoveInformationRequest) returns (MoveInformationReplyWithStatus) {}
   rpc MoveInformationGetNew (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationHasNew (MoveInformationRequest) returns (MoveInformationHasNewReply) {}
+  rpc ImageReceiverChunker(google.protobuf.Empty) returns (stream ImageChunk) {}
+}
+
+message ImageChunk {
+  bytes chunk = 1;
 }
 
 // The request message containing the user's name.
