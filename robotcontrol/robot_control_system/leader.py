@@ -48,14 +48,8 @@ def image_handler(wc_ip : str, wc_port : int,image_intervall : int, image_folder
             with grpc.insecure_channel(wc_ip + ":" + str(wc_port)) as channel:
                 stub = webcontroller_pb2_grpc.AgentStub(channel)
                 
-                while len(byte_arr) > 0:
-                    if len(byte_arr) < chunk_size:
-                        chunk = byte_arr
-                        byte_arr = []
-                    else:
-                        chunk = byte_arr[0 : chunk_size]
-                        byte_arr = byte_arr[chunk_size : ]
-                    stub.ImageReceiverChunker(webcontroller_pb2.ImageChunk(chunk=chunk))
+                for chunk_item in byte_arr:
+                    stub.ImageReceiverChunker(webcontroller_pb2.ImageChunk(chunk=chunk_item))
 
             os.remove(file)
 
