@@ -22,7 +22,7 @@ service Agent {
   rpc MoveInformationGetLastSended (MoveInformationRequest) returns (MoveInformationReplyWithStatus) {}
   rpc MoveInformationGetNew (MoveInformationRequest) returns (MoveInformationReply) {}
   rpc MoveInformationHasNew (MoveInformationRequest) returns (MoveInformationHasNewReply) {}
-  rpc ImageReceiverChunker(google.protobuf.Empty) returns (stream ImageChunk) {}
+  rpc ImageReceiverChunker(stream ImageChunk) returns (google.protobuf.Empty) {}
 }
 
 message ImageChunk {

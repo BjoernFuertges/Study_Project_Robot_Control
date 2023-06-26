@@ -1,5 +1,5 @@
 """The Python implementation of the GRPC webcontroller.Agent server."""
-
+import time
 from concurrent import futures
 import logging
 
@@ -13,6 +13,14 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
     radiusChangeFactor = 0.2
 
     sm = status_management.status_manager("IRobot")
+
+    def ImageReceiverChunker(self, request, context):
+        byte_arr = next(request)
+
+        f = open(str(time.time()) + '.jpg', 'wb')
+        f.write(byte_arr)
+        f.close()
+
 
     def MoveInformation(self, request, context):
         return self.Sm_To_mir()
