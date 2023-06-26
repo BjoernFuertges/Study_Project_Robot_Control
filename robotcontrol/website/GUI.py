@@ -23,13 +23,13 @@ def move_forward():
     with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryChangeForward(webcontroller_pb2.MoveInformationRequest(name=robot_name))
-        print(
-            response.name + ", " + 
-            str(response.stop) + ", " + 
-            str(response.speed) + ", " + 
-            response.direction + ", " + 
-            response.turn + ", " + 
-            str(response.radius))
+        # print(
+        #     response.name + ", " + 
+        #     str(response.stop) + ", " + 
+        #     str(response.speed) + ", " + 
+        #     response.direction + ", " + 
+        #     response.turn + ", " + 
+        #     str(response.radius))
     return render_template('index.html', forward_message=forward_message);
 
 @app.route("/backward/", methods=['POST'])
@@ -39,13 +39,13 @@ def move_backward():
     with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryChangeBackward(webcontroller_pb2.MoveInformationRequest(name=robot_name))
-        print(
-            response.name + ", " + 
-            str(response.stop) + ", " + 
-            str(response.speed) + ", " + 
-            response.direction + ", " + 
-            response.turn + ", " + 
-            str(response.radius))
+        #print(
+        #    response.name + ", " + 
+        #    str(response.stop) + ", " + 
+        #    str(response.speed) + ", " + 
+        #    response.direction + ", " + 
+        #    response.turn + ", " + 
+        #    str(response.radius))
     return render_template('index.html', forward_message=backward_message)
 
 @app.route("/leftturn/", methods=['POST'])
@@ -55,13 +55,13 @@ def turn_left():
     with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryChangeLeftChange(webcontroller_pb2.MoveInformationRequest(name=robot_name))
-        print(
-            response.name + ", " + 
-            str(response.stop) + ", " + 
-            str(response.speed) + ", " + 
-            response.direction + ", " + 
-            response.turn + ", " + 
-            str(response.radius))
+        #print(
+        #    response.name + ", " + 
+        #    str(response.stop) + ", " + 
+        #    str(response.speed) + ", " + 
+        #    response.direction + ", " + 
+        #    response.turn + ", " + 
+        #    str(response.radius))
     return render_template('index.html', forward_message=left_message)
 
 @app.route("/rightturn/", methods=['POST'])
@@ -71,13 +71,13 @@ def turn_right():
     with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryChangeRightChange(webcontroller_pb2.MoveInformationRequest(name=robot_name))
-        print(
-            response.name + ", " + 
-            str(response.stop) + ", " + 
-            str(response.speed) + ", " + 
-            response.direction + ", " + 
-            response.turn + ", " + 
-            str(response.radius))
+        #print(
+        #    response.name + ", " + 
+        #    str(response.stop) + ", " + 
+        #    str(response.speed) + ", " + 
+        #    response.direction + ", " + 
+        #    response.turn + ", " + 
+        #    str(response.radius))
     return render_template('index.html', forward_message=right_message)
 
 @app.route("/start/", methods=['POST'])
@@ -88,13 +88,13 @@ def start():
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         # TODO: Pls add Start Method for Robot
         response = stub.MoveInformationDeliveryStop(webcontroller_pb2.MoveInformationSendStop(name=robot_name, stop=False))
-        print(
-            response.name + ", " + 
-            str(response.stop) + ", " + 
-            str(response.speed) + ", " + 
-            response.direction + ", " + 
-            response.turn + ", " + 
-            str(response.radius))
+        #print(
+        #    response.name + ", " + 
+        #    str(response.stop) + ", " + 
+        #    str(response.speed) + ", " + 
+        #    response.direction + ", " + 
+        #    response.turn + ", " + 
+        #    str(response.radius))
     return render_template('index.html', forward_message=right_message)
 
 
@@ -105,13 +105,13 @@ def stop():
     with grpc.insecure_channel(wc_server_ip + ":" + str(wc_server_port)) as channel:
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationDeliveryStop(webcontroller_pb2.MoveInformationSendStop(name=robot_name, stop=True))
-        print(
-            response.name + ", " + 
-            str(response.stop) + ", " + 
-            str(response.speed) + ", " + 
-            response.direction + ", " + 
-            response.turn + ", " + 
-            str(response.radius))
+        #print(
+        #    response.name + ", " + 
+        #    str(response.stop) + ", " + 
+        #    str(response.speed) + ", " + 
+        #    response.direction + ", " + 
+        #    response.turn + ", " + 
+        #    str(response.radius))
     return render_template('index.html', forward_message=right_message)
 
 
@@ -122,13 +122,13 @@ def returnStatus() :
         stub = webcontroller_pb2_grpc.AgentStub(channel)
         response = stub.MoveInformationGetLastSended(webcontroller_pb2.MoveInformationRequest(name=robot_name))
         status = [str(response.speed), str(response.speed), response.direction, response.turn, response.turn, response.radius, response.stop]
-    print(status)
+    #print(status)
     return render_template('index.html', entries=status, myGreatValue='hi')
 
     
 @app.route("/downloadImg/", methods=['POST'])
 def downloadSnapshot() :
-    print("Hi, let me download this Snap")
+    #print("Hi, let me download this Snap")
     return render_template('index.html')
 
 def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool, gui_ip : str, gui_port : int) -> None:

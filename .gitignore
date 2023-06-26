@@ -1,6 +1,5 @@
 .vscode/
+*.jpg
 *.pyc
 __pycache__/
 **/__pycache__/
-
-*.jpg
