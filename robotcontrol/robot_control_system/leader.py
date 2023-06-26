@@ -41,7 +41,7 @@ def image_handler(image_intervall : int, image_folder : str, chunk_size : int, s
     while(stop() != True):
         files = os.listdir(image_folder)
         for file in files:
-            with open(file, "rb") as image_file:
+            with open(image_folder + "/" + file, "rb") as image_file:
                 image_value = image_file.read()
                 byte_arr = bytearray(image_value)
 
