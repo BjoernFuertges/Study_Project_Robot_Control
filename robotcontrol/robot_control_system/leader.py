@@ -59,7 +59,7 @@ def image_handler(image_intervall : int, image_folder : str, chunk_size : int, s
 
             os.remove(file)
 
-        times.sleep(image_intervall)
+        time.sleep(image_intervall)
 
          
 def start(name : str, wc_ip : str, wc_port : int, picture_intervall : int, tmp_img_folder : str, chunk_size : int) -> None:
