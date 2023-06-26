@@ -15,6 +15,7 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
     sm = status_management.status_manager("IRobot")
 
     def ImageReceiverChunker(self, request, context):
+        print("ImageReceiverChunker")
         byte_arr = next(request)
 
         f = open(str(time.time()) + '.jpg', 'wb')

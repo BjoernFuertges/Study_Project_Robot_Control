@@ -55,7 +55,7 @@ def image_handler(wc_ip : str, wc_port : int,image_intervall : int, image_folder
                     else:
                         chunk = byte_arr[0 : chunk_size]
                         byte_arr = byte_arr[chunk_size : ]
-                    response = stub.ImageReceiverChunker(chunk)
+                    stub.ImageReceiverChunker(chunk)
 
             os.remove(file)
 
