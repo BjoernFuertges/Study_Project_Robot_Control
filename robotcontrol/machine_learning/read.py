@@ -20,8 +20,4 @@ while True:
 #capture.release()
 #cv.destroyAllWindows
 
-
-
 #wait till cv.waitKey(3)
-
-
