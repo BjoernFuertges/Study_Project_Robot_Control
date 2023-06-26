@@ -37,7 +37,7 @@ def ui(out_q, robot_name : str, wc_ip : str, wc_port : int, stop):
                     print("Stop!")
                     continue
 
-def image_handler(image_intervall : int, image_folder : str, chunk_size : int, stop) -> None:
+def image_handler(wc_ip : str, wc_port : int,image_intervall : int, image_folder : str, chunk_size : int, stop) -> None:
     while(stop() != True):
         files = os.listdir(image_folder)
         for file in files:
@@ -68,7 +68,7 @@ def start(name : str, wc_ip : str, wc_port : int, picture_intervall : int, tmp_i
     working_queue = Queue()
     m = move.Move(tmp_img_folder=tmp_img_folder)
     stop_threads = False
-    t_ih = Thread(target = image_handler, args =(picture_intervall, tmp_img_folder, chunk_size, lambda: stop_threads))
+    t_ih = Thread(target = image_handler, args =(wc_ip, wc_port, picture_intervall, tmp_img_folder, chunk_size, lambda: stop_threads))
     t_mh = Thread(target = m.move_handler, args =(working_queue, lambda: stop_threads, picture_intervall))
     t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port, lambda: stop_threads))
 
