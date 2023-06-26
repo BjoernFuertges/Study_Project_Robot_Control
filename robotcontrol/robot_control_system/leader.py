@@ -72,6 +72,7 @@ def start(name : str, wc_ip : str, wc_port : int, picture_intervall : int, tmp_i
     t_mh = Thread(target = m.move_handler, args =(working_queue, lambda: stop_threads, picture_intervall))
     t_ui = Thread(target = ui, args =(working_queue, name, wc_ip, wc_port, lambda: stop_threads))
 
+    t_ih.start()
     t_mh.start()
     t_ui.start()
 
