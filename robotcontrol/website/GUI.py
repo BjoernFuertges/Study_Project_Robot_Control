@@ -125,6 +125,12 @@ def returnStatus() :
     print(status)
     return render_template('index.html', entries=status, myGreatValue='hi')
 
+    
+@app.route("/downloadImg/", methods=['POST'])
+def downloadSnapshot() :
+    print("Hi, let me download this Snap")
+    return render_template('index.html')
+
 def start(name : str, wc_ip : str, wc_port : int, debug_modus : bool, gui_ip : str, gui_port : int) -> None:
     global robot_name
     global wc_server_ip
