@@ -8,8 +8,8 @@ DESCRIPTOR: _descriptor.FileDescriptor
 class ImageChunk(_message.Message):
     __slots__ = ["chunk"]
     CHUNK_FIELD_NUMBER: _ClassVar[int]
-    chunk: bytes
-    def __init__(self, chunk: _Optional[bytes] = ...) -> None: ...
+    chunk: int
+    def __init__(self, chunk: _Optional[int] = ...) -> None: ...
 
 class MoveInformationHasNewReply(_message.Message):
     __slots__ = ["hasNew"]

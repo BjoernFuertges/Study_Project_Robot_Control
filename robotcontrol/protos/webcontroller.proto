@@ -26,7 +26,7 @@ service Agent {
 }
 
 message ImageChunk {
-  bytes chunk = 1;
+  int32 chunk = 1;
 }
 
 // The request message containing the user's name.
