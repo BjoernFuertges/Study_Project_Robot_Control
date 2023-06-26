@@ -10,8 +10,11 @@ class Camera:
         capture_config = self.picam.create_still_configuration()
         self.picam.configure(capture_config)
 
-    def take_picture(self, image_name : str):
         self.picam.start()
+
+    def take_picture(self, image_name : str):
         self.picam.capture_file(image_name)
 
+    
+    def __del__(self):
         self.picam.close()
