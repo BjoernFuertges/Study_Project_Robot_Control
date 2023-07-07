@@ -16,7 +16,9 @@ class Agent(webcontroller_pb2_grpc.AgentServicer):
 
     def ImageReceiverChunker(self, request, context):
         print("ImageReceiverChunker")
-        byte_arr = next(request)
+        byte_arr = []
+        for r in request:
+            byte_arr.append(request.chunk)
 
         f = open(str(time.time()) + '.jpg', 'wb')
         f.write(byte_arr)
