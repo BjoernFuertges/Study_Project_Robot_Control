@@ -6,25 +6,14 @@ import matplotlib.pyplot as plt
 
 #reads the image then returns it
 
+myconfig = r"--psm 11 --oem3"
+
 # Grayscale, Gaussian blur, Otsu's threshold
-image = cv.imread('Bild1.png')
-gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
-blur = cv.GaussianBlur(gray, (3,3), 0)
-thresh = cv.threshold(blur, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU)[1]
+image = cv.imread('C:\Users\jumla\OneDrive\Desktop\Studienprojekt\Studienprojekt1_Robotersteuerung\robotcontrol\machine_learning\Photos\Bild1.png')
+print(image)
 
-# Morph open to remove noise and invert image
-kernel = cv.getStructuringElement(cv.MORPH_RECT, (3,3))
-opening = cv.morphologyEx(thresh, cv.MORPH_OPEN, kernel, iterations=1)
-invert = 255 - opening
-
-# Perform text extraction
-data = pytesseract.image_to_string(invert, lang='eng', config='--psm 6')
-print(data)
-cv.imshow('thresh', thresh)
-cv.imshow('opening', opening)
-cv.imshow('invert', invert)
-cv.waitKey()
-#reading videos
+text = pytesseract.image_to_string(ts.Image.open(image), config=myconfig)
+print(text)
 
 #capture = cv.VideoCapture(0)
 
