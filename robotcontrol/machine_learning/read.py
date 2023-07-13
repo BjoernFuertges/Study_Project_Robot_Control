@@ -1,5 +1,5 @@
 import cv2 as cv
-import PIL as ts
+import PIL as pil
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 import matplotlib.pyplot as plt
@@ -9,10 +9,11 @@ import matplotlib.pyplot as plt
 myconfig = r"--psm 11 --oem3"
 
 # Grayscale, Gaussian blur, Otsu's threshold
-image = cv.imread('C:\Users\jumla\OneDrive\Desktop\Studienprojekt\Studienprojekt1_Robotersteuerung\robotcontrol\machine_learning\Photos\Bild1.png')
+imagepath = "C:/Users/jumla/OneDrive/Desktop/Studienprojekt/Studienprojekt1_Robotersteuerung/robotcontrol/machine_learning/Photos/Bild1.jpg"
+image = cv.imread(imagepath)
 print(image)
 
-text = pytesseract.image_to_string(ts.Image.open(image), config=myconfig)
+text = pytesseract.image_to_string(pil.Image.open(imagepath), config=myconfig)
 print(text)
 
 #capture = cv.VideoCapture(0)
