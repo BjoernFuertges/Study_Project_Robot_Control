@@ -6,10 +6,9 @@ import matplotlib.pyplot as plt
 
 #reads the image then returns it
 
-myconfig = r"--psm 11 --oem3"
+myconfig = r"--psm 11"
 
-# Grayscale, Gaussian blur, Otsu's threshold
-imagepath = "C:/Users/jumla/OneDrive/Desktop/Studienprojekt/Studienprojekt1_Robotersteuerung/robotcontrol/machine_learning/Photos/Bild1.jpg"
+imagepath = "C:/Users/jumla/OneDrive/Desktop/Studienprojekt/Studienprojekt1_Robotersteuerung/robotcontrol/machine_learning/Photos/Bild1.png"
 image = cv.imread(imagepath)
 print(image)
 
