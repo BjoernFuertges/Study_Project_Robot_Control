@@ -24,3 +24,17 @@ to run pytesseract needs to know location of the script via a code snippet at th
 More information on machine learning: 
 https://docs.opencv.org/3.4/dc/dd6/ml_intro.html
 
+# Ideen und weitere Arbeitsschritte
+
+Grayscaling und Contourfilter could get better results for textdetection
+
+1.) Test robot camera and try to read this image
+
+if (image good enough to output room number)
+    further development
+else
+    cry?
+    indoormapping through left hand rule?
+    orientation through other methods?
+    
+
