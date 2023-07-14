@@ -1,6 +1,8 @@
 import robot_control_system.camera as camera
 import argparse
 import time
+from pathlib import Path
+import os
 
 class SelfCamera:
 
@@ -10,6 +12,9 @@ class SelfCamera:
     def __init__(self, path : str):
         self.cam = camera.Camera()
         self.path = path
+        p = Path(self.path)
+        if p.exists() == False:
+            os.mkdir(path=p.absolute)
 
     def take_images(self):
         print("Press 'exit' to stop. Press any key to take a picture.")
