@@ -47,6 +47,9 @@ network={
 }
 ```
 
+### Take a picture
+TODO
+
 ## Dependencies
 ### Machine Learning
 ``` bash
