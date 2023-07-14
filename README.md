@@ -22,6 +22,12 @@ graph TD;
     B & C -...-> |"<b>gRPC:</b> <br> use methods"| F;
 ```
 
+
+### Download file from pi
+```bash
+scp username@ip:path localPath
+```
+
 ## Dependencies
 ### Webserver
 * Flask:
