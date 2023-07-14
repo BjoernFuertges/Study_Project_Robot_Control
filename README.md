@@ -22,6 +22,20 @@ graph TD;
     B & C -...-> |"<b>gRPC:</b> <br> use methods"| F;
 ```
 
+## Use the Pi
+### Connect via ssh
+1. IP des Pis herausfinden (z. B. über deinen Router)
+2. ssh pi@dieIp (z. B.: ssh pi@192.168.45.100)
+3. Bestätigen, dass du dich verbinden möchtest
+4. The authenticity of host '192.168.45.100 (192.168.45.100)' can't be established.
+    >>> ECDSA key fingerprint is SHA256:rD/fXhX5zzHwcDVpyrMYQkG7BPuqjJjSaNqSsZfm738.
+    >>> Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+    `yes`
+5. Password pi eingeben
+6. You are in!
+
+
+
 ## Dependencies
 ### Machine Learning
 ``` bash
