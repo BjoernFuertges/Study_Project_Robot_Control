@@ -34,7 +34,18 @@ graph TD;
 5. Password pi eingeben
 6. You are in!
 
-
+### Config Wifi
+Run:
+```bash
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+```
+and add your wifi.
+```
+network={
+   ssid="Wifi-SSID"
+   psk="Wifi-PASSWORD"
+}
+```
 
 ## Dependencies
 ### Machine Learning
