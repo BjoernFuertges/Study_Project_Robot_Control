@@ -8,7 +8,7 @@ class SelfCamera:
     path : str
 
     def __init__(self, path : str):
-        self.cam = camera.Camera
+        self.cam = camera.Camera()
         self.path = path
 
     def take_images(self):
