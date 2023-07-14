@@ -17,7 +17,7 @@ class SelfCamera:
             user_input = input('Your input: ')
             if user_input == 'exit':
                 break
-            self.cam.take_picture(image_name=self.path + str(time.time_ns()) + ".jpg")
+            self.cam.take_picture(image_name=self.path + "/" + str(time.time_ns()) + ".jpg")
         
 
 if __name__ == '__main__':
