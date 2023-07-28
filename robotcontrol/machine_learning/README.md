@@ -32,6 +32,8 @@ Grayscaling und Contourfilter could get better results for textdetection
 
 if (image good enough to output room number)
     further development
+    training a OCR modell optical character recognition
+    
 else
     cry?
     indoormapping through left hand rule?

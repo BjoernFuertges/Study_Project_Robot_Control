@@ -8,11 +8,32 @@ import matplotlib.pyplot as plt
 
 myconfig = r"--psm 11"
 
-imagepath = "C:/Users/jumla/OneDrive/Desktop/Studienprojekt/Studienprojekt1_Robotersteuerung/robotcontrol/machine_learning/Photos/Bild1.png"
+imagepath = "C:/Users/jumla/OneDrive/Desktop/Studienprojekt/Studienprojekt1_Robotersteuerung/robotcontrol/machine_learning/Photos/robot_picture_aoi.jpg"
 image = cv.imread(imagepath)
 print(image)
 
+thresh = cv.threshold(image, 130, 255, cv.THRESH_BINARY)[1]
+denoised = cv.fastNlMeansDenoisingColored(image)
+# Create custom kernel
+kernel = cv.getStructuringElement(cv.MORPH_RECT, (3,3))
+# Perform closing (dilation followed by erosion)
+close = cv.morphologyEx(thresh, cv.MORPH_CLOSE, kernel)
+
+# Invert image to use for Tesseract
+result = 255 - close
+cv.imshow('thresh', thresh)
+cv.imshow('close', close)
+cv.imshow('result', result)
+cv.imshow('denoised', denoised)
+
+# Throw image into tesseract
+print(pytesseract.image_to_string(result))
+cv.waitKey()
+
+
 text = pytesseract.image_to_string(pil.Image.open(imagepath), config=myconfig)
+
+cv.imwrite("newImage", image)
 print(text)
 
 #capture = cv.VideoCapture(0)
