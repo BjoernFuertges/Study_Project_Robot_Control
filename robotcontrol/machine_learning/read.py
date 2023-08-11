@@ -13,17 +13,23 @@ image = cv.imread(imagepath)
 print(image)
 
 thresh = cv.threshold(image, 130, 255, cv.THRESH_BINARY)[1]
+cv.imwrite("treshhold.png", thresh)
 denoised = cv.fastNlMeansDenoisingColored(image)
+cv.imwrite("denoised.png", denoised)
 # Create custom kernel
 kernel = cv.getStructuringElement(cv.MORPH_RECT, (3,3))
+
 # Perform closing (dilation followed by erosion)
 close = cv.morphologyEx(thresh, cv.MORPH_CLOSE, kernel)
+cv.imwrite("morph.png", close)
 
 # Invert image to use for Tesseract
 result = 255 - close
 cv.imshow('thresh', thresh)
 cv.imshow('close', close)
+cv.imwrite("close.png", close)
 cv.imshow('result', result)
+cv.imwrite("result.png", result)
 cv.imshow('denoised', denoised)
 
 # Throw image into tesseract
@@ -33,7 +39,7 @@ cv.waitKey()
 
 text = pytesseract.image_to_string(pil.Image.open(imagepath), config=myconfig)
 
-cv.imwrite("newImage", image)
+
 print(text)
 
 #capture = cv.VideoCapture(0)
