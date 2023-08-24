@@ -1,18 +1,19 @@
 import cv2 as cv
 import PIL as pil
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Users\jumla\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\Scripts'
 import matplotlib.pyplot as plt
 
 #reads the image then returns it
 
 myconfig = r"--psm 11"
 
-imagepath = "C:/Users/jumla/OneDrive/Desktop/Studienprojekt/Studienprojekt1_Robotersteuerung/robotcontrol/machine_learning/Photos/robot_picture_aoi.jpg"
+imagepath = "C:/Users/jumla/Desktop/Studienprojekt/Studienprojekt1_Robotersteuerung/robotcontrol/machine_learning/Photos/robot_picture_aoi.jpg"
 image = cv.imread(imagepath)
 print(image)
-
-thresh = cv.threshold(image, 130, 255, cv.THRESH_BINARY)[1]
+gray_image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+cv.imwrite("gray_image.png", gray_image)
+thresh = cv.threshold(gray_image, 130, 255, cv.THRESH_BINARY)[1]
 cv.imwrite("treshhold.png", thresh)
 denoised = cv.fastNlMeansDenoisingColored(image)
 cv.imwrite("denoised.png", denoised)
@@ -25,6 +26,7 @@ cv.imwrite("morph.png", close)
 
 # Invert image to use for Tesseract
 result = 255 - close
+cv.imshow('gray', gray_image)
 cv.imshow('thresh', thresh)
 cv.imshow('close', close)
 cv.imwrite("close.png", close)
@@ -33,14 +35,14 @@ cv.imwrite("result.png", result)
 cv.imshow('denoised', denoised)
 
 # Throw image into tesseract
-print(pytesseract.image_to_string(result))
+#print(pytesseract.image_to_string(result))
 cv.waitKey()
 
 
-text = pytesseract.image_to_string(pil.Image.open(imagepath), config=myconfig)
+#text = pytesseract.image_to_string(pil.Image.open(imagepath), config=myconfig)
 
 
-print(text)
+#print(text)
 
 #capture = cv.VideoCapture(0)
 
