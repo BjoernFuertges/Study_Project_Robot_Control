@@ -7,37 +7,76 @@
 # Date        : 2019/07/24
 import time
 import RPi.GPIO as GPIO
-import robot_control_system.RGB as RGB
-from robot_control_system.move_command import Move_Command
+import RGB as RGB
+from move_command import Move_Command
+
+import random # TEST
 
 class Move:
 
 	# motor_EN_A: Pin7  |  motor_EN_B: Pin11
 	# motor_A:  Pin8,Pin10    |  motor_B: Pin13,Pin12
 
-	Motor_A_EN    = 4
-	Motor_B_EN    = 17
 
-	Motor_A_Pin1  = 14
-	Motor_A_Pin2  = 15
-	Motor_B_Pin1  = 27
-	Motor_B_Pin2  = 18
-
-	Dir_forward   = 0
-	Dir_backward  = 1
-
-	left_forward  = 0
-	left_backward = 1
-
-	right_forward = 0
-	right_backward= 1
-
-	pwm_A = 0
-	pwm_B = 0
 
 	rgb : RGB.RGB
 
 	def __init__(self):#Motor initialization
+		# from RPIservo
+		self.sc_direction = [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1]
+		self.initPos = [init_pwm0,init_pwm1,init_pwm2,init_pwm3,
+						init_pwm4,init_pwm5,init_pwm6,init_pwm7,
+						init_pwm8,init_pwm9,init_pwm10,init_pwm11,
+						init_pwm12,init_pwm13,init_pwm14,init_pwm15]
+		self.goalPos = [300,300,300,300, 300,300,300,300 ,300,300,300,300 ,300,300,300,300]
+		self.nowPos  = [300,300,300,300, 300,300,300,300 ,300,300,300,300 ,300,300,300,300]
+		self.bufferPos  = [300.0,300.0,300.0,300.0, 300.0,300.0,300.0,300.0 ,300.0,300.0,300.0,300.0 ,300.0,300.0,300.0,300.0]
+		self.lastPos = [300,300,300,300, 300,300,300,300 ,300,300,300,300 ,300,300,300,300]
+		self.ingGoal = [300,300,300,300, 300,300,300,300 ,300,300,300,300 ,300,300,300,300]
+		self.maxPos  = [560,560,560,560, 560,560,560,560 ,560,560,560,560 ,560,560,560,560]
+		self.minPos  = [100,100,100,100, 100,100,100,100 ,100,100,100,100 ,100,100,100,100]
+		self.scSpeed = [0,0,0,0, 0,0,0,0 ,0,0,0,0 ,0,0,0,0]
+
+		self.ctrlRangeMax = 560
+		self.ctrlRangeMin = 100
+		self.angleRange = 180
+
+		'''
+		scMode: 'init' 'auto' 'certain' 'quick' 'wiggle'
+		'''
+		self.scMode = 'auto'
+		self.scTime = 2.0
+		self.scSteps = 30
+		
+		self.scDelay = 0.037
+		self.scMoveTime = 0.037
+
+		self.goalUpdate = 0
+		self.wiggleID = 0
+		self.wiggleDirection = 1
+
+		# END
+
+		self.Motor_A_EN    = 4
+		self.Motor_B_EN    = 17
+
+		self.Motor_A_Pin1  = 14
+		self.Motor_A_Pin2  = 15
+		self.Motor_B_Pin1  = 27
+		self.Motor_B_Pin2  = 18
+
+		self.Dir_forward   = 0
+		self.Dir_backward  = 1
+
+		self.left_forward  = 0
+		self.left_backward = 1
+
+		self.right_forward = 0
+		self.right_backward= 1
+
+		self.pwm_A = 0
+		self.pwm_B = 0
+
 		self.rgb = RGB.RGB()
 		
 		self.rgb.red()
@@ -58,6 +97,7 @@ class Move:
 		except:
 			pass
 
+		print(self.pwm_A)
 		self.rgb.blue()
 
 	def __del__(self):
@@ -77,6 +117,7 @@ class Move:
 
 
 	def motor_left(self, status : int, direction : int, speed : int) -> None:#Motor 2 positive and negative rotation
+		print("ml: " + str(status) + ", " + str(direction) + ", " + str(speed))
 		if status == 0: # stop
 			GPIO.output(self.Motor_B_Pin1, GPIO.LOW)
 			GPIO.output(self.Motor_B_Pin2, GPIO.LOW)
@@ -95,6 +136,7 @@ class Move:
 
 
 	def motor_right(self, status : int, direction : int, speed : int) -> None:#Motor 1 positive and negative rotation
+		print("mr: " + str(status) + ", " + str(direction) + ", " + str(speed))
 		if status == 0: # stop
 			GPIO.output(self.Motor_A_Pin1, GPIO.LOW)
 			GPIO.output(self.Motor_A_Pin2, GPIO.LOW)
@@ -146,6 +188,16 @@ class Move:
 		else:
 			pass
 
+	def pwmGenOut(self, angleInput):
+		return int(round(((self.ctrlRangeMax-self.ctrlRangeMin)/self.angleRange*angleInput),0))
+
+	def moveAngle(self, ID, angleInput):
+		self.nowPos[ID] = int(self.initPos[ID] + self.sc_direction[ID]*self.pwmGenOut(angleInput))
+		if self.nowPos[ID] > self.maxPos[ID]:self.nowPos[ID] = self.maxPos[ID]
+		elif self.nowPos[ID] < self.minPos[ID]:self.nowPos[ID] = self.minPos[ID]
+		self.lastPos[ID] = self.nowPos[ID]
+		self.pwm_B.set_pwm(ID, 0, self.nowPos[ID])
+
 	def move_handler(self, in_q, stop) -> None:
 		while stop() != True:
 			# Get some data
@@ -173,8 +225,13 @@ if __name__ == '__main__':
 		speed_set = 100
 		m = Move()
 		m.rgb.yellow()
-		m.move(speed_set, 'forward', 'no', 0.8)
-		time.sleep(1.3)
+		#m.move(speed_set, 'forward', 'left', 0.8)
+		while 1:
+			m.moveAngle(0,(random.random()*100-50))
+			time.sleep(1)
+			m.moveAngle(1,(random.random()*100-50))
+			time.sleep(1)
+		#time.sleep(1.3)
 		m.motorStop()
 		m.rgb.green()
 		del m
