@@ -9,8 +9,32 @@ import time
 import RPi.GPIO as GPIO
 import RGB as RGB
 from move_command import Move_Command
+import Adafruit_PCA9685
+
 
 import random # TEST
+
+
+
+init_pwm0 = 300
+init_pwm1 = 300
+init_pwm2 = 300
+init_pwm3 = 300
+
+init_pwm4 = 300
+init_pwm5 = 300
+init_pwm6 = 300
+init_pwm7 = 300
+
+init_pwm8 = 300
+init_pwm9 = 300
+init_pwm10 = 300
+init_pwm11 = 300
+
+init_pwm12 = 300
+init_pwm13 = 300
+init_pwm14 = 300
+init_pwm15 = 300
 
 class Move:
 
@@ -23,6 +47,9 @@ class Move:
 
 	def __init__(self):#Motor initialization
 		# from RPIservo
+
+		self.pwm = Adafruit_PCA9685.PCA9685()
+		self.pwm.set_pwm_freq(50)
 		self.sc_direction = [1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1]
 		self.initPos = [init_pwm0,init_pwm1,init_pwm2,init_pwm3,
 						init_pwm4,init_pwm5,init_pwm6,init_pwm7,
@@ -77,6 +104,8 @@ class Move:
 		self.pwm_A = 0
 		self.pwm_B = 0
 
+
+		self.moveInit()
 		self.rgb = RGB.RGB()
 		
 		self.rgb.red()
@@ -106,12 +135,13 @@ class Move:
 		GPIO.cleanup()             # Release resource
 
 	def motorStop(self) -> None:#Motor stops
-		GPIO.output(self.Motor_A_Pin1, GPIO.LOW)
-		GPIO.output(self.Motor_A_Pin2, GPIO.LOW)
-		GPIO.output(self.Motor_B_Pin1, GPIO.LOW)
-		GPIO.output(self.Motor_B_Pin2, GPIO.LOW)
-		GPIO.output(self.Motor_A_EN, GPIO.LOW)
-		GPIO.output(self.Motor_B_EN, GPIO.LOW)
+		print("motorStop")
+		#GPIO.output(self.Motor_A_Pin1, GPIO.LOW)
+		#GPIO.output(self.Motor_A_Pin2, GPIO.LOW)
+		#GPIO.output(self.Motor_B_Pin1, GPIO.LOW)
+		#GPIO.output(self.Motor_B_Pin2, GPIO.LOW)
+		#GPIO.output(self.Motor_A_EN, GPIO.LOW)
+		#GPIO.output(self.Motor_B_EN, GPIO.LOW)
 
 
 
@@ -193,10 +223,12 @@ class Move:
 
 	def moveAngle(self, ID, angleInput):
 		self.nowPos[ID] = int(self.initPos[ID] + self.sc_direction[ID]*self.pwmGenOut(angleInput))
-		if self.nowPos[ID] > self.maxPos[ID]:self.nowPos[ID] = self.maxPos[ID]
-		elif self.nowPos[ID] < self.minPos[ID]:self.nowPos[ID] = self.minPos[ID]
+		if self.nowPos[ID] > self.maxPos[ID]:
+			self.nowPos[ID] = self.maxPos[ID]
+		elif self.nowPos[ID] < self.minPos[ID]:
+			self.nowPos[ID] = self.minPos[ID]
 		self.lastPos[ID] = self.nowPos[ID]
-		self.pwm_B.set_pwm(ID, 0, self.nowPos[ID])
+		self.pwm.set_pwm(ID, 0, self.nowPos[ID])
 
 	def move_handler(self, in_q, stop) -> None:
 		while stop() != True:
@@ -218,6 +250,16 @@ class Move:
 			# Indicate completion
 			#in_q.task_done()
 		
+	def moveInit(self):
+		self.scMode = 'init'
+		for i in range(0,16):
+			self.pwm.set_pwm(i,0,self.initPos[i])
+			self.lastPos[i] = self.initPos[i]
+			self.nowPos[i] = self.initPos[i]
+			self.bufferPos[i] = float(self.initPos[i])
+			self.goalPos[i] = self.initPos[i]
+		#self.pause()
+	
 
 if __name__ == '__main__':
 	m : Move
@@ -232,7 +274,7 @@ if __name__ == '__main__':
 			m.moveAngle(1,(random.random()*100-50))
 			time.sleep(1)
 		#time.sleep(1.3)
-		m.motorStop()
+		#m.motorStop()
 		m.rgb.green()
 		del m
 		print("that is the end")
