@@ -122,6 +122,7 @@ class Move:
 				self.motor_left(1, self.left_forward, speed)
 				self.motor_right(0, self.right_backward, int(speed*radius))
 			else:
+				# direction == 'forward' and turn == 'no'
 				self.motor_left(1, self.left_forward, speed)
 				self.motor_right(1, self.right_forward, speed)
 		elif direction == 'backward':
@@ -132,6 +133,7 @@ class Move:
 				self.motor_left(1, self.left_backward, speed)
 				self.motor_right(0, self.right_forward, int(speed*radius))
 			else:
+				# direction == 'backward' and turn == 'no'
 				self.motor_left(1, self.left_backward, speed)
 				self.motor_right(1, self.right_backward, speed)
 		elif direction == 'no':
@@ -142,6 +144,7 @@ class Move:
 				self.motor_left(1, self.left_forward, speed)
 				self.motor_right(1, self.right_backward, speed)
 			else:
+				# direction == 'no' and turn == 'no'
 				self.motorStop()
 		else:
 			pass
