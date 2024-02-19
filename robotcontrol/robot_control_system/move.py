@@ -7,7 +7,7 @@
 # Date        : 2019/07/24
 import time
 import RPi.GPIO as GPIO
-import RGB as RGB
+import robot_control_system.RGB as RGB
 from move_command import Move_Command
 import Adafruit_PCA9685
 

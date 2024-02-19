@@ -40,6 +40,28 @@ pip install caer
     ```bash
     pip install grpcio-tools
     ```
+
+### robot control system
+* adafruit-pca9685 (*driver*)
+    ```bash
+    python -m venv venv
+    source venv/bin/activate
+    pip install adafruit-pca9685
+    ```
+* rpi_ws281x
+    ```bash
+    pip install rpi_ws281x
+    ```
+* mpu6050-raspberrypi
+    ```bash
+    pip install mpu6050-raspberrypi
+    ```
+* sudo apt-get install python3-dev python3-rpi.gpio
+* run rcs with sudo - it solves the 
+>     import RPi.GPIO as GPIO
+ModuleNotFoundError: No module named 'RPi'
+issue
+
 ## Start
 To start the Gui navigate to `/robotcontrol` then type:
 ```bash
