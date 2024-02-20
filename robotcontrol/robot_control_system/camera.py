@@ -18,3 +18,8 @@ class Camera:
     
     def __del__(self):
         self.picam.close()
+
+if __name__ == 'main':
+    print("Hello at camera")
+    c = Camera()
+    c.take_picture()
