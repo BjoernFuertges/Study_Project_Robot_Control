@@ -1,3 +1,4 @@
+import time
 from picamera2 import Picamera2, Preview
 
 class Camera:
@@ -19,7 +20,7 @@ class Camera:
     def __del__(self):
         self.picam.close()
 
-if __name__ == 'main':
+if __name__ == '__main__':
     print("Hello at camera")
     c = Camera()
-    c.take_picture()
+    c.take_picture(str(time.time())+".jpg")
