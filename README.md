@@ -5,6 +5,7 @@
 ``` bash
 pip install opencv-contrib-python
 pip install caer
+pip install pytesseract
 ```
 
 ### Webserver
